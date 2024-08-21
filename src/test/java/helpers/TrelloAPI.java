@@ -1,6 +1,9 @@
 package helpers;
 
+import com.codeborne.selenide.WebDriverRunner;
 import models.BoardModel;
+
+import java.util.regex.Pattern;
 
 import static io.restassured.RestAssured.given;
 import static specs.ResponseSpec.requestSpec;
@@ -43,5 +46,12 @@ public class TrelloAPI {
                 .then()
                 .spec(responseSpec)
                 .statusCode(200);
+    }
+
+    public static String getBoardId(String boardUrl) throws Exception {
+        var parts = boardUrl.split(Pattern.quote("/"));
+        if (parts.length != 6)
+            throw new Exception(String.format("Wrong format of url \"%s\" count of parts is %s", boardUrl, parts.length));
+        return parts[4];
     }
 }

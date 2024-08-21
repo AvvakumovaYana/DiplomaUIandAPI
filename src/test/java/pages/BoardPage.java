@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
+import helpers.TrelloAPI;
 import lombok.Getter;
 import models.BoardModel;
 
@@ -136,10 +137,6 @@ public class BoardPage {
     }
 
     public String getBoardId() throws Exception {
-        var url = WebDriverRunner.getWebDriver().getCurrentUrl();
-        var parts = url.split(Pattern.quote("/"));
-        if (parts.length != 6)
-            throw new Exception(String.format("Wrong format of url \"%s\" count of parts is %s", url, parts.length));
-        return parts[4];
+        return TrelloAPI.getBoardId(WebDriverRunner.getWebDriver().getCurrentUrl());
     }
 }
