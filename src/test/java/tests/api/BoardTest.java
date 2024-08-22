@@ -6,21 +6,16 @@ import models.BoardModel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import pages.BoardCreationForm;
-import pages.BoardPage;
-import pages.MainBoardsPage;
-import tests.web.TestBase;
 
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Owner("Аввакумова Яна")
-@Tag("API")
+@Tag("api")
 
-public class BoardTest extends TestBase {
+public class BoardTest {
 
     private TrelloAPI api = new TrelloAPI();
-
 
     @Test
     @DisplayName("Проверка создания, редактирования, удаления доски через API")
@@ -30,9 +25,9 @@ public class BoardTest extends TestBase {
         BoardModel createResponse = step("Создаем доску", () -> {
             return api.createBoard(boardName);
         });
-        String boardId=TrelloAPI.getBoardId(createResponse.getUrl());
+        String boardId = TrelloAPI.getBoardId(createResponse.getUrl());
         step("Редактируем название доски", () -> {
-            boardPage.changeBoardTitle("Board update test UI");
+            api.updateBoardName(boardId, newBoardName);
         });
         step("Проверяем изменение названия доски", () -> {
             BoardModel getResponse = api.getBoard(boardId);
@@ -42,9 +37,7 @@ public class BoardTest extends TestBase {
             api.deleteBoard(boardId);
         });
         step("Проверяем, что доски нет", () -> {
-            api.getBoard400(boardId);
+            api.getBoard404(boardId);
         });
     }
 }
-
-

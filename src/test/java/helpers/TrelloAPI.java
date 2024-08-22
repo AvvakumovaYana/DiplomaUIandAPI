@@ -1,6 +1,5 @@
 package helpers;
 
-import com.codeborne.selenide.WebDriverRunner;
 import models.BoardModel;
 
 import java.util.regex.Pattern;
@@ -39,6 +38,15 @@ public class TrelloAPI {
                 .statusCode(400);
     }
 
+    public void getBoard404(String id) {
+        given(requestSpec)
+                .when()
+                .get("/boards/" + id)
+                .then()
+                .spec(responseSpec)
+                .statusCode(404);
+    }
+
     public void deleteBoard(String id) {
         given(requestSpec)
                 .when()
@@ -46,6 +54,19 @@ public class TrelloAPI {
                 .then()
                 .spec(responseSpec)
                 .statusCode(200);
+    }
+
+    public BoardModel updateBoardName(String id, String name) {
+        BoardModel body = new BoardModel();
+        body.setName(name);
+        return given(requestSpec)
+                .when()
+                .body(body)
+                .put("/boards/" + id)
+                .then()
+                .spec(responseSpec)
+                .statusCode(200)
+                .extract().as(BoardModel.class);
     }
 
     public static String getBoardId(String boardUrl) throws Exception {
