@@ -33,10 +33,10 @@ public class TestBase {
         Configuration.remote = System.getProperty("Wdhost","https://user1:1234@selenoid.autotests.cloud/wd/hub");
         Configuration.browser = System.getProperty("Browser","chrome");
         if (Configuration.browser.equals("chrome")) {
-            Configuration.browserVersion = System.getProperty("ChromeVersion", "122.0");
+            Configuration.browserVersion = System.getProperty("ChromeVersion", "126.0");
         }
         else if (Configuration.browser.equals("firefox")) {
-            Configuration.browserVersion = System.getProperty("FirefoxVersion","123.0");
+            Configuration.browserVersion = System.getProperty("FirefoxVersion","125.0");
         }
         else {
             throw new Exception("Неверный браузер! " + Configuration.browser);
