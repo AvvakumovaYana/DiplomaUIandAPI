@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$$;
 import static io.appium.java_client.AppiumBy.*;
 import static io.qameta.allure.Allure.step;
 import static com.codeborne.selenide.Selenide.$;
@@ -12,28 +13,48 @@ public class WikipediaTests extends TestBase {
 
     @Test
     @DisplayName("Проверка стартовой страницы википедии")
-    void wikipediaOnboardingTest() {
+    void loginTest() throws InterruptedException {
+        step("Нажимаем на кнопку 'Log in'", () -> {
+//            $("[text='Log in']").click();
+            $(xpath("//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View[3]/android.widget.Button")).click();
+        });
+        step("Нажимаем на кнопку 'SIGN IN WITH EMAIL'", () -> {
+            $(id("com.trello:id/email")).click();
+        });
 
-        step("Проверяем стартовую страницу", () -> {
-            $(id("org.wikipedia.alpha:id/primaryTextView")).shouldHave(text("The Free Encyclopedia"));
+        Thread.sleep(15000);
+
+        step("Нажимаем на кнопку 'Add another account' если она есть", () -> {
+            var list = $$(xpath("//android.widget.Button[@resource-id=\"navigate-to-login-prompt\"]"));
+            if (list.isEmpty() == false)
+                list.first().click();
         });
-        step("Переходим на вторую страницу", () -> {
-            $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
+        step("Заполняем поле 'Enter your email'", () -> {
+            $(xpath("//android.widget.EditText[@resource-id=\"username\"]")).click();
+            $(xpath("//android.widget.EditText[@resource-id=\"username\"]")).sendKeys("yana.for.test@gmail.com");
         });
-        step("Проверяем вторую страницу", () -> {
-            $(id("org.wikipedia.alpha:id/primaryTextView")).shouldHave(text("New ways to explore"));
+        step("Нажимаем на страницу, чтобы убрать подсказку для ввода", () -> {
+            //$(xpath("//android.widget.TextView[@text=\"Log in to continue\"]")).click();
+            $(xpath("//*[@text=\"Log in to continue\"]")).click();
         });
-        step("Переходим на третью страницу", () -> {
-            $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
+        step("Нажимаем на кнопку 'Continue'", () -> {
+            $(xpath("//android.widget.Button[@resource-id=\"login-submit\"]")).click();
         });
-        step("Проверяем третью страницу", () -> {
-            $(id("org.wikipedia.alpha:id/primaryTextView")).shouldHave(text("Reading lists with sync"));
+
+        Thread.sleep(5000);
+
+        step("Заполняем поле 'Enter password'", () -> {
+            $(xpath("//android.widget.EditText[@resource-id=\"password\"]")).sendKeys("yanafortest");
         });
-        step("Переходим на четвертую страницу", () -> {
-            $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
+        step("Нажимаем на кнопку 'Log in'", () -> {
+            $(xpath("//android.widget.Button[@resource-id=\"login-submit\"]")).click();
         });
-        step("Проверяем четвертую страницу", () -> {
-            $(id("org.wikipedia.alpha:id/primaryTextView")).shouldHave(text("Data & Privacy"));
+
+        Thread.sleep(20000);
+
+        step("Проверяем заголовок экрана Boards", () -> {
+            $(xpath("//android.widget.TextView[@text=\"Boards\"]"))
+                    .shouldHave(text("Boards"));
         });
     }
 }

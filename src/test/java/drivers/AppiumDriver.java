@@ -3,6 +3,7 @@ package drivers;
 import com.codeborne.selenide.WebDriverProvider;
 import config.mobile.DeviceConfig;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.MutableCapabilities;
@@ -33,8 +34,9 @@ public class AppiumDriver implements WebDriverProvider {
         File file = new File(classLoader.getResource(deviceConfig.app()).getFile());
         caps.setCapability("appium:app", file.getAbsolutePath());
 
-        caps.setCapability("appium:appWaitPackage", deviceConfig.appWaitPackage());
-        caps.setCapability("appium:appWaitActivity", deviceConfig.appWaitActivity());
+        caps.setCapability("appium:appPackage", deviceConfig.appWaitPackage());
+        caps.setCapability("appium:appActivity", deviceConfig.appWaitActivity());
+        caps.setCapability("appium:adbExecTimeout", 120000);
 
         System.out.println("APP: " + caps.getCapability("appium:app"));
 
