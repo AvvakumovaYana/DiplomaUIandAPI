@@ -2,11 +2,9 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
-import helpers.TrelloAPI;
+import helpers.api.TrelloAPI;
 import lombok.Getter;
 import models.BoardModel;
-
-import java.util.regex.Pattern;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;

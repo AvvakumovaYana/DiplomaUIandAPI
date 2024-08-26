@@ -1,6 +1,6 @@
 package tests.web;
 
-import helpers.TrelloAPI;
+import helpers.api.TrelloAPI;
 import io.qameta.allure.Owner;
 import models.BoardModel;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Owner("Аввакумова Яна")
 @Tag("web")
 
-public class BoardTest extends TestBase {
+public class WebBoardTest extends TestBase {
 
     private MainBoardsPage mainBoardsPage = new MainBoardsPage();
     private BoardCreationForm boardCreationForm = new BoardCreationForm();

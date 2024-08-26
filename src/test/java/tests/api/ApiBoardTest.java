@@ -1,6 +1,6 @@
 package tests.api;
 
-import helpers.TrelloAPI;
+import helpers.api.TrelloAPI;
 import io.qameta.allure.Owner;
 import models.BoardModel;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Owner("Аввакумова Яна")
 @Tag("api")
 
-public class BoardTest {
+public class ApiBoardTest {
 
     private TrelloAPI api = new TrelloAPI();
 

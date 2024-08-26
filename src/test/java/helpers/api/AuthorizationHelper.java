@@ -1,6 +1,6 @@
-package helpers;
+package helpers.api;
 
-import config.ApiCredentials;
+import config.api.ApiCredentials;
 import io.restassured.http.Header;
 import org.aeonbits.owner.ConfigFactory;
 
