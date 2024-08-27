@@ -2,7 +2,6 @@ package helpers.mobile;
 
 import config.mobile.DeviceConfig;
 import org.aeonbits.owner.ConfigFactory;
-
 import static io.restassured.RestAssured.given;
 
 public class Browserstack {

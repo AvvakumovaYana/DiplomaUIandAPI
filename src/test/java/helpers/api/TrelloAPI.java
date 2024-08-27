@@ -1,9 +1,7 @@
 package helpers.api;
 
 import models.BoardModel;
-
 import java.util.regex.Pattern;
-
 import static io.restassured.RestAssured.given;
 import static specs.ResponseSpec.requestSpec;
 import static specs.ResponseSpec.responseSpec;

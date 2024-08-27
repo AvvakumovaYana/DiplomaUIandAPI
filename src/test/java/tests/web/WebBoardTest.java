@@ -6,9 +6,9 @@ import models.BoardModel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import pages.BoardCreationForm;
-import pages.BoardPage;
-import pages.MainBoardsPage;
+import pages.web.BoardCreationForm;
+import pages.web.BoardPage;
+import pages.web.MainBoardsPage;
 
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;

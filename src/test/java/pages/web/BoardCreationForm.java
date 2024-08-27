@@ -1,4 +1,4 @@
-package pages;
+package pages.web;
 
 import com.codeborne.selenide.SelenideElement;
 
@@ -106,6 +106,7 @@ public class BoardCreationForm {
         boardNameField.setValue(name);
         return this;
     }
+
     public BoardCreationForm clickCreateButton() {
         createButton.click();
         return this;

@@ -70,3 +70,9 @@ task main_api(type: Test) {
         includeTags("api")
     }
 }
+
+task main_mobile(type: Test) {
+    useJUnitPlatform{
+        includeTags("mobile")
+    }
+}

@@ -3,7 +3,6 @@ package drivers;
 import com.codeborne.selenide.WebDriverProvider;
 import config.mobile.DeviceConfig;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.remote.MobileCapabilityType;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.MutableCapabilities;
@@ -13,7 +12,6 @@ import javax.annotation.Nonnull;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-
 
 public class AppiumDriver implements WebDriverProvider {
     private static final DeviceConfig deviceConfig = ConfigFactory.create(DeviceConfig.class);
