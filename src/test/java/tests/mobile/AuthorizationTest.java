@@ -17,7 +17,7 @@ public class AuthorizationTest extends TestBase {
     private AuthorizationPage authorizationPage = new AuthorizationPage();
 
     @Test
-    @DisplayName("Проверка стартовой страницы википедии")
+    @DisplayName("Проверка авторизации в приложении Trello")
     void loginTest() throws InterruptedException {
         step("Нажимаем на кнопку 'Log in'", () -> {
             authorizationPage.clickLogInButton();
@@ -28,7 +28,7 @@ public class AuthorizationTest extends TestBase {
 
         Thread.sleep(15000);
 
-        step("Нажимаем на кнопку 'Add another account' если она есть", () -> {
+        step("Нажимаем на кнопку 'Add another account', если она есть", () -> {
             var list = $$(xpath("//android.widget.Button[@resource-id=\"navigate-to-login-prompt\"]"));
             if (list.isEmpty() == false)
                 list.first().click();
@@ -36,7 +36,7 @@ public class AuthorizationTest extends TestBase {
         step("Заполняем поле 'Enter your email'", () -> {
             authorizationPage.fillEnterYourEmailField();
         });
-        step("Нажимаем на страницу, чтобы убрать подсказку для ввода", () -> {
+        step("Нажимаем на текст страницы, чтобы убрать подсказку для ввода", () -> {
             authorizationPage.clickLogInToContinueLabel();
         });
         step("Нажимаем на кнопку 'Continue'", () -> {
