@@ -19,7 +19,7 @@ public class TestBase {
     @BeforeAll
     static void beforeAll() {
         if (System.getProperty("device") == null)
-            System.setProperty("device", "emulated");
+            System.setProperty("device", "browserstack");
 
         Configuration.browserSize = null;
         Configuration.browser = switch (System.getProperty("device")) {

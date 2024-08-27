@@ -4,7 +4,7 @@ import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import pages.mobile.AuthorisationPage;
+import pages.mobile.AuthorizationPage;
 
 import static com.codeborne.selenide.Selenide.$$;
 import static io.appium.java_client.AppiumBy.*;
@@ -13,17 +13,17 @@ import static io.qameta.allure.Allure.step;
 @Owner("Аввакумова Яна")
 @Tag("mobile")
 
-public class AuthorisationTest extends TestBase {
-    private AuthorisationPage authorisationPage = new AuthorisationPage();
+public class AuthorizationTest extends TestBase {
+    private AuthorizationPage authorizationPage = new AuthorizationPage();
 
     @Test
     @DisplayName("Проверка стартовой страницы википедии")
     void loginTest() throws InterruptedException {
         step("Нажимаем на кнопку 'Log in'", () -> {
-            authorisationPage.clickLogInButton();
+            authorizationPage.clickLogInButton();
         });
         step("Нажимаем на кнопку 'SIGN IN WITH EMAIL'", () -> {
-            authorisationPage.clickSingInWithEmailButton();
+            authorizationPage.clickSingInWithEmailButton();
         });
 
         Thread.sleep(15000);
@@ -34,28 +34,28 @@ public class AuthorisationTest extends TestBase {
                 list.first().click();
         });
         step("Заполняем поле 'Enter your email'", () -> {
-            authorisationPage.fillEnterYourEmailField();
+            authorizationPage.fillEnterYourEmailField();
         });
         step("Нажимаем на страницу, чтобы убрать подсказку для ввода", () -> {
-            authorisationPage.clickLogInToContinueLabel();
+            authorizationPage.clickLogInToContinueLabel();
         });
         step("Нажимаем на кнопку 'Continue'", () -> {
-            authorisationPage.clickContinueButton();
+            authorizationPage.clickContinueButton();
         });
 
         Thread.sleep(5000);
 
         step("Заполняем поле 'Enter password'", () -> {
-            authorisationPage.fillEnterPasswordButton();
+            authorizationPage.fillEnterPasswordButton();
         });
         step("Нажимаем на кнопку 'Log in'", () -> {
-            authorisationPage.clickNextLogInButton();
+            authorizationPage.clickNextLogInButton();
         });
 
         Thread.sleep(20000);
 
         step("Проверяем заголовок экрана Boards", () -> {
-            authorisationPage.checkPageLabel();
+            authorizationPage.checkPageLabel();
         });
     }
 }
