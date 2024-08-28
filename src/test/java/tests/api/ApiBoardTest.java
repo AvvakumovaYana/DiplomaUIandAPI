@@ -1,6 +1,7 @@
 package tests.api;
 
 import helpers.api.TrelloAPI;
+import io.qameta.allure.AllureId;
 import io.qameta.allure.Owner;
 import models.BoardModel;
 import org.junit.jupiter.api.DisplayName;
@@ -18,6 +19,7 @@ public class ApiBoardTest {
     private TrelloAPI api = new TrelloAPI();
 
     @Test
+    @AllureId("34137")
     @DisplayName("Проверка создания, редактирования, удаления доски через API")
     void boardLifecycleTest() throws Exception {
         String boardName = "Board for API test";
