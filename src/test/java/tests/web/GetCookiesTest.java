@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class GetCookiesTest {
     @Test
-    void RefreshCookies() throws InterruptedException, IOException {
+    void refreshCookies() throws InterruptedException, IOException {
         Configuration.baseUrl = "https://trello.com";
         Configuration.pageLoadStrategy = "eager";
         Configuration.timeout = 6000;

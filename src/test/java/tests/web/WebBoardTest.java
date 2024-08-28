@@ -33,7 +33,7 @@ public class WebBoardTest extends TestBase {
         step("Открываем форму создания доски", () -> {
             mainBoardsPage.clickCreateBoardButton();
         });
-        step("Проверяем содрежание формы создания доски", () -> {
+        step("Проверяем содержание формы создания доски", () -> {
             boardCreationForm
                     .checkFormTitle()
                     .checkBoardPreview()

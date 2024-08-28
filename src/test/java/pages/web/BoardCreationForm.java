@@ -15,7 +15,7 @@ public class BoardCreationForm {
     private final SelenideElement boardNameField = $("[data-testid='create-board-title-input']");
     private final SelenideElement setBoardNameLabel = $(".lWu5grh2rIDIym");
     private final SelenideElement boardVisibilityLabel = $(byText("Видимость"));
-    private final SelenideElement boardVisibilityField = $(".css-spyyn7-singleValue");
+    private final SelenideElement boardVisibilityField = $(".css-4kbx6o-singleValue");
     private final SelenideElement createButton = $("[data-testid='create-board-submit-button']");
     private final SelenideElement templateButton = $("[data-testid='create-from-template-button']");
     private final SelenideElement agreementText = $(".ml7HZrT9aR6kxG");
