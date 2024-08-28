@@ -11,6 +11,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import javax.annotation.Nonnull;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 
 public class BrowserstackDriver implements WebDriverProvider {
     private static final DeviceConfig deviceConfig = ConfigFactory.create(DeviceConfig.class);
@@ -20,18 +21,20 @@ public class BrowserstackDriver implements WebDriverProvider {
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
         MutableCapabilities caps = new MutableCapabilities();
 
-        caps.setCapability("browserstack.user", deviceConfig.username());
-        caps.setCapability("browserstack.key", deviceConfig.password());
+        HashMap<String, Object> bstackOptions = new HashMap<>();
+        bstackOptions.put("userName", deviceConfig.username());
+        bstackOptions.put("accessKey", deviceConfig.password());
+        bstackOptions.put("projectName", deviceConfig.projectName());
+        bstackOptions.put("buildName", deviceConfig.buildName());
+        bstackOptions.put("sessionName", deviceConfig.name());
+        caps.setCapability("bstack:options", bstackOptions);
 
-        caps.setCapability("app", deviceConfig.app());
+        caps.setCapability("appium:app", deviceConfig.app());
 
-        caps.setCapability("device", deviceConfig.deviceName());
-        caps.setCapability("os_version", deviceConfig.platformVersion());
-
-        caps.setCapability("project", deviceConfig.projectName());
-        caps.setCapability("build", deviceConfig.buildName());
-        caps.setCapability("name", deviceConfig.name());
-        caps.setCapability("url", deviceConfig.url());
+        caps.setCapability("appium:deviceName", deviceConfig.deviceName());
+        caps.setCapability("appium:platformVersion", deviceConfig.platformVersion());
+        caps.setCapability("appium:adbExecTimeout", 120000);
+        //caps.setCapability("url", deviceConfig.url());
 
         System.out.println("APP: " + deviceConfig.app());
 
