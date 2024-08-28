@@ -28,8 +28,7 @@
 <a href="https://telegram.org/"><img width="6%" title="Telegram" src="media/logo/Telegram.svg"/></a>  
 <a href="https://app-automate.browserstack.com/"><img width="6%" title="BrowserStack" src="media/logo/Browserstack.svg"/></a>  
 <a href="https://developer.android.com/studio"><img width="6%" title="Android Studio.svg" src="media/logo/Android_Studio.svg"/></a>   
-<a href="https://appium.io"><img width="6%" title="Appium" src="media/logo/Appium.svg"/></a>  
-<a href="https://www.atlassian.com/software/jira"><img width="6%" title="Jira" src="media/logo/Jira.svg"/></a>  
+<a href="https://appium.io"><img width="6%" title="Appium" src="media/logo/Appium.svg"/></a>   
 </p>   
 
 - Проект состоит из UI-тестов, API и мобильных тестов для Android
@@ -72,7 +71,7 @@
 * <code>ApiKey</code> – ключ для доступа к Api. 
 * <code>ApiToken</code> – токен для доступа к Api.
   
-***Параметры запуска:***
+***Параметры запуска для UI и Api:***
 ```
 clean
 ${TEST_TASK}
@@ -84,12 +83,25 @@ ${TEST_TASK}
 -Dapikey=${ApiKey}
 -Dapitoken=${ApiToken}
 ```
+
+***Важно!***
+```
+Для запуска Web-тестов данного проекта необходимо в парамеры сборки Jenkins добавить файл "Cookies.data".
+Данный файл генерируется при локальном запуске Web-тестов.
+Файл содрежит куки, необходимые для авторизации на тестрируемой странице.
+```
+
 Для запуска сборки необходимо перейти в раздел <code>Собрать с параметрами</code>, задать параметры и нажать кнопку <code>Собрать</code>.
 
 <p align="center">
 <img title="Jenkins" src="media/screenshots/JParameters1.png"> 
 <img title="Jenkins" src="media/screenshots/JParameters2.png">
 </p>
+
+***Параметры запуска для Mobile:***
+```
+clean main_mobile
+```
 
 После выполнения сборки, в блоке <code>История сборок</code> напротив номера сборки появится значок <code>Allure Report</code>, при клике на который открывается страница со сформированным html-отчетом,
 а так же значок <code>Allure TestOps</code> при клике на который открывается страница проекта в <code>Allure TestOps</code>.
