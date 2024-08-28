@@ -1,9 +1,9 @@
 package pages.web;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -13,8 +13,9 @@ public class MainBoardsPage {
 
     private final String pageTitleValue = "ВАШИ РАБОЧИЕ ПРОСТРАНСТВА";
 
-    public MainBoardsPage openPage() {
+    public MainBoardsPage openPage() throws InterruptedException {
         open("/");
+        Selenide.refresh();
         pageTitle.shouldBe(visible).shouldHave(text(pageTitleValue));
         return this;
     }

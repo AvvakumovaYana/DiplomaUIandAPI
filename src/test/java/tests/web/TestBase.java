@@ -27,7 +27,7 @@ public class TestBase {
         Configuration.pageLoadStrategy = "eager";
         Configuration.timeout = 6000;
 
-        Configuration.holdBrowserOpen = true;
+        //Configuration.holdBrowserOpen = true;
 
         Configuration.remote = System.getProperty("Wdhost","https://user1:1234@selenoid.autotests.cloud/wd/hub");
         Configuration.browser = System.getProperty("Browser","chrome");
@@ -47,8 +47,7 @@ public class TestBase {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
-                "enableVideo", true,
-                "--lang", "ru"
+                "enableVideo", true
         ));
         Configuration.browserCapabilities = capabilities;
 

@@ -1,5 +1,6 @@
 package pages.web;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import helpers.api.TrelloAPI;
@@ -58,6 +59,7 @@ public class BoardPage {
 
     public BoardPage openPage(BoardModel model) {
         open(model.getUrl());
+        Selenide.refresh();
         boardTitle.shouldBe(visible).shouldHave(text(model.getName()));
         return this;
     }
@@ -71,6 +73,7 @@ public class BoardPage {
     }
 
     public BoardPage openBoardMenu () {
+        Selenide.refresh();
         boardMenu.click();
         return this;
     }
