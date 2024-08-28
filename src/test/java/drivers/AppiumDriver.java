@@ -35,6 +35,7 @@ public class AppiumDriver implements WebDriverProvider {
         caps.setCapability("appium:appPackage", deviceConfig.appWaitPackage());
         caps.setCapability("appium:appActivity", deviceConfig.appWaitActivity());
         caps.setCapability("appium:adbExecTimeout", 120000);
+        caps.setCapability("language", "en");
 
         System.out.println("APP: " + caps.getCapability("appium:app"));
 
