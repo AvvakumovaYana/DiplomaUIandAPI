@@ -37,8 +37,7 @@ dependencies {
             'org.assertj:assertj-core:3.26.0',
             'io.qameta.allure:allure-rest-assured:2.27.0',
             'io.qameta.allure:allure-selenide:2.27.0',
-            'org.aeonbits.owner:owner:1.0.12',
-            "io.appium:java-client:9.2.0"
+            'org.aeonbits.owner:owner:1.0.12'
     )
     runtimeOnly 'org.aspectj:aspectjweaver:1.9.22.1'
 }
@@ -64,11 +63,5 @@ task main_web(type: Test) {
 task main_api(type: Test) {
     useJUnitPlatform{
         includeTags("api")
-    }
-}
-
-task main_mobile(type: Test) {
-    useJUnitPlatform{
-        includeTags("mobile")
     }
 }
