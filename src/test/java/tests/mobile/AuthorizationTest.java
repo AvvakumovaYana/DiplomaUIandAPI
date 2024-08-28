@@ -1,5 +1,6 @@
 package tests.mobile;
 
+import io.qameta.allure.AllureId;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -17,6 +18,7 @@ public class AuthorizationTest extends TestBase {
     private AuthorizationPage authorizationPage = new AuthorizationPage();
 
     @Test
+    @AllureId("34130")
     @DisplayName("Проверка авторизации в приложении Trello")
     void loginTest() throws InterruptedException {
         step("Нажимаем на кнопку 'Log in'", () -> {

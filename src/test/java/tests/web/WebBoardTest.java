@@ -1,6 +1,7 @@
 package tests.web;
 
 import helpers.api.TrelloAPI;
+import io.qameta.allure.AllureId;
 import io.qameta.allure.Owner;
 import models.BoardModel;
 import org.junit.jupiter.api.DisplayName;
@@ -23,6 +24,7 @@ public class WebBoardTest extends TestBase {
     private TrelloAPI api = new TrelloAPI();
 
     @Test
+    @AllureId("34133")
     @DisplayName("Проверка формы создания доски")
     void boardCreationFormTest() {
         step("Открываем страницу c досками пользователя", () -> {
@@ -52,6 +54,7 @@ public class WebBoardTest extends TestBase {
     }
 
     @Test
+    @AllureId("34132")
     @DisplayName("Проверка создания доски c типом видимости: рабочее пространство")
     void boardCreationTest() {
         BoardPage boardPage = new BoardPage("Board creation test UI");
@@ -83,6 +86,7 @@ public class WebBoardTest extends TestBase {
     }
 
     @Test
+    @AllureId("34131")
     @DisplayName("Проверка редактирования названия доски c типом видимости: рабочее пространство")
     void boardUpdateTest() throws Exception {
         BoardPage boardPage = new BoardPage("Board creation test API");
@@ -109,6 +113,7 @@ public class WebBoardTest extends TestBase {
     }
 
     @Test
+    @AllureId("34134")
     @DisplayName("Проверка удаления доски c типом видимости: рабочее пространство")
     void boardDeleteTest() throws Exception {
         BoardPage boardPage = new BoardPage("Board delete test UI");
