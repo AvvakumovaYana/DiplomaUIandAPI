@@ -5,8 +5,8 @@ import models.BoardModel;
 import java.util.regex.Pattern;
 
 import static io.restassured.RestAssured.given;
-import static specs.ResponseSpec.requestSpec;
-import static specs.ResponseSpec.responseSpec;
+import static specs.HttpSpec.requestSpec;
+import static specs.HttpSpec.responseSpec;
 
 public class TrelloAPI {
     public static String getBoardId(String boardUrl) throws Exception {

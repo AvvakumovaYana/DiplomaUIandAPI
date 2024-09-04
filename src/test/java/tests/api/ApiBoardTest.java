@@ -13,7 +13,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Owner("Аввакумова Яна")
 @Tag("api")
-
 public class ApiBoardTest {
     private final TrelloAPI api = new TrelloAPI();
 

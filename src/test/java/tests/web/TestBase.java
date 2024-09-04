@@ -5,6 +5,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
+import config.CommonConfig;
 import config.web.WebCredentials;
 import helpers.web.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -28,11 +29,12 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class TestBase {
     private static final WebCredentials webCredentials = ConfigFactory.create(WebCredentials.class, System.getProperties());
-    static String cookieFileName = "Cookies.data";
+    private static final CommonConfig commonConfig = ConfigFactory.create(CommonConfig.class, System.getProperties());
+    private static final String cookieFileName = "Cookies.data";
 
     @BeforeAll
     static void beforeAll() throws Exception {
-        Configuration.baseUrl = "https://trello.com";
+        Configuration.baseUrl = commonConfig.baseUri();
         Configuration.pageLoadStrategy = "eager";
         Configuration.timeout = 6000;
 
