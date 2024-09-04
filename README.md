@@ -61,7 +61,7 @@
 - [x] Проверка авторизации в приложении Trello
 ---
 
-## <img width="4%" style="vertical-align:middle" title="Jenkins" src="media/logo/Jenkins.svg"> Сборка в [Jenkins](https://jenkins.autotests.cloud/job/C27-girlonthemars-HW23-LeaderTask-Tests-Project/)
+## <img width="4%" style="vertical-align:middle" title="Jenkins" src="media/logo/Jenkins.svg"> Сборка в [Jenkins](https://jenkins.autotests.cloud/job/DiplomaAvvakumovaYana/)
 
 * <code>TASK</code> – название запускаемой задачи. По умолчанию - <code>main_web</code>.
 * <code>BROWSER</code> – браузер, в котором будут выполняться тесты. По умолчанию - <code>chrome</code>.
@@ -111,7 +111,7 @@ clean main_mobile
 </p>
 
 ---
-## <img width="4%" style="vertical-align:middle" title="Allure_Report" src="media/logo/Allure_Report.svg"> Интеграция с [Allure Report](https://jenkins.autotests.cloud/job/C27-girlonthemars-HW23-LeaderTask-Tests-Project/allure/)
+## <img width="4%" style="vertical-align:middle" title="Allure_Report" src="media/logo/Allure_Report.svg"> Интеграция с [Allure Report](https://jenkins.autotests.cloud/job/DiplomaAvvakumovaYana/29/allure/)
 `Allure Report` - инструмент для генерации и визуализации отчетов о выполнении тестов, который позволяет представлять результаты тестирования в наглядной и удобной форме.
 
 ### Диаграмма прохождения тестов
@@ -127,7 +127,7 @@ clean main_mobile
 </p>
 
 ---
-## <img width="4%" style="vertical-align:middle" title="Allure_TestOps" src="media/logo/Allure_TO.svg"> Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/4369/dashboards)
+## <img width="4%" style="vertical-align:middle" title="Allure_TestOps" src="media/logo/Allure_TO.svg"> Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/4391/test-cases/34137?treeId=0)
 `Allure TestOps` - платформа для управления тестированием, которая предоставляет обширный набор для организации, выполнения и анализа тестов в проектах.
 
 <p align="center">  
@@ -148,5 +148,5 @@ clean main_mobile
 
 В отчетах Allure для каждого теста прикреплен не только скриншот, но и видео прохождения теста.
 <p align="center">
-  <img title="Selenoid Video" src="media/screenshots/30b36741ba7252964adfa1ce7d41c6ce.gif">
+  <img title="Selenoid Video" src="media/screenshots/AVideo.gif">
 </p>
