@@ -5,7 +5,7 @@ import io.restassured.http.Header;
 import org.aeonbits.owner.ConfigFactory;
 
 public class AuthorizationHelper {
-    private static final ApiCredentials apiCredentials = ConfigFactory.create(ApiCredentials.class);
+    private static final ApiCredentials apiCredentials = ConfigFactory.create(ApiCredentials.class, System.getProperties());
 
     public static Header getAuthorizationHeader() {
         var apiKey = System.getProperty("apikey", apiCredentials.apiKey());

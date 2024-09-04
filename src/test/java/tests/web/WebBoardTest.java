@@ -19,9 +19,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class WebBoardTest extends TestBase {
 
-    private MainBoardsPage mainBoardsPage = new MainBoardsPage();
-    private BoardCreationForm boardCreationForm = new BoardCreationForm();
-    private TrelloAPI api = new TrelloAPI();
+    private final MainBoardsPage mainBoardsPage = new MainBoardsPage();
+    private final BoardCreationForm boardCreationForm = new BoardCreationForm();
+    private final TrelloAPI api = new TrelloAPI();
 
     @Test
     @AllureId("34133")
@@ -88,7 +88,7 @@ public class WebBoardTest extends TestBase {
     @Test
     @AllureId("34131")
     @DisplayName("Проверка редактирования названия доски c типом видимости: рабочее пространство")
-    void boardUpdateTest() throws Exception {
+    void boardUpdateTest() {
         BoardPage boardPage = new BoardPage("Board creation test API");
 
         BoardModel createResponse = step("Создаем доску через API", () -> {
@@ -115,7 +115,7 @@ public class WebBoardTest extends TestBase {
     @Test
     @AllureId("34134")
     @DisplayName("Проверка удаления доски c типом видимости: рабочее пространство")
-    void boardDeleteTest() throws Exception {
+    void boardDeleteTest() {
         BoardPage boardPage = new BoardPage("Board delete test UI");
 
         BoardModel createResponse = step("Создаем доску через API", () -> {
@@ -143,7 +143,7 @@ public class WebBoardTest extends TestBase {
             mainBoardsPage.checkPageTitle();
         });
         step("Проверяем через API, что доски нет", () -> {
-            api.getBoard400(boardPage.getBoardId());
+            api.getBoard(boardPage.getBoardId(), 400);
         });
     }
 }

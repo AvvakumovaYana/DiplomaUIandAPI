@@ -22,7 +22,7 @@ public class BoardPage {
     private final SelenideElement closeBoard = $(".js-close-board");
     private final SelenideElement closeBoardFormTitle = $(".pop-over-header-title");
     private final SelenideElement closeBoardFormText = $(".pop-over-content");
-    private final SelenideElement closeBoardFormLink = $("[href='/u/user17009278/boards']");
+    private final SelenideElement closeBoardFormLink = $("[href^='/u/user'][href$='/boards']");
     private final SelenideElement formCloseButton = $("[data-testid='popover-close']");
     private final SelenideElement closeBoardButton = $("[data-testid='close-board-confirm-button']");
     private final SelenideElement deleteBoard = $("[data-testid='close-board-delete-board-button']");
@@ -57,28 +57,26 @@ public class BoardPage {
         return this;
     }
 
-    public BoardPage openPage(BoardModel model) {
+    public void openPage(BoardModel model) {
         open(model.getUrl());
         Selenide.refresh();
         boardTitle.shouldBe(visible).shouldHave(text(model.getName()));
-        return this;
     }
 
-    public BoardPage changeBoardTitle (String name) {
+    public void changeBoardTitle(String name) {
         this.name = name;
         boardTitle.click();
         boardTitleField.sendKeys(name);
         boardTitleField.pressEnter();
-        return this;
     }
 
-    public BoardPage openBoardMenu () {
+    public BoardPage openBoardMenu() {
         Selenide.refresh();
         boardMenu.click();
         return this;
     }
 
-    public BoardPage clickCloseBoard () {
+    public BoardPage clickCloseBoard() {
         closeBoard.scrollTo()
                 .shouldBe(visible)
                 .shouldHave(text(" Закрыть доску"))
@@ -107,13 +105,13 @@ public class BoardPage {
         return this;
     }
 
-    public BoardPage clickCloseBoardButton () {
+    public BoardPage clickCloseBoardButton() {
         closeBoardButton.shouldBe(visible).shouldHave(value("Закрыть"));
         closeBoardButton.click();
         return this;
     }
 
-    public BoardPage clickDeleteBoard () {
+    public BoardPage clickDeleteBoard() {
         deleteBoard.shouldBe(visible).shouldHave(text("Удалить доску навсегда"));
         deleteBoard.click();
         return this;
@@ -131,10 +129,9 @@ public class BoardPage {
         return this;
     }
 
-    public BoardPage clickDeleteBoardButton () {
+    public void clickDeleteBoardButton() {
         deleteBoardButton.shouldBe(visible).shouldHave(text("Удалить"));
         deleteBoardButton.click();
-        return this;
     }
 
     public String getBoardId() throws Exception {

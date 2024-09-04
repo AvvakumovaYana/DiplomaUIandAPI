@@ -37,7 +37,8 @@ dependencies {
             'org.assertj:assertj-core:3.26.0',
             'io.qameta.allure:allure-rest-assured:2.27.0',
             'io.qameta.allure:allure-selenide:2.27.0',
-            'org.aeonbits.owner:owner:1.0.12'
+            'org.aeonbits.owner:owner:1.0.12',
+            'com.opencsv:opencsv:5.9'
     )
     runtimeOnly 'org.aspectj:aspectjweaver:1.9.22.1'
 }

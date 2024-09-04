@@ -7,7 +7,7 @@ import io.restassured.specification.ResponseSpecification;
 import static helpers.api.AuthorizationHelper.getAuthorizationHeader;
 import static helpers.api.CustomAllureListener.withCustomTemplate;
 import static io.restassured.RestAssured.with;
-import static io.restassured.filter.log.LogDetail.*;
+import static io.restassured.filter.log.LogDetail.ALL;
 import static io.restassured.http.ContentType.JSON;
 
 public class ResponseSpec {

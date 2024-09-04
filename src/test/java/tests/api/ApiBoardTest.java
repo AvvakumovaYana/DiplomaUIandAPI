@@ -15,8 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Tag("api")
 
 public class ApiBoardTest {
-
-    private TrelloAPI api = new TrelloAPI();
+    private final TrelloAPI api = new TrelloAPI();
 
     @Test
     @AllureId("34137")
@@ -39,7 +38,7 @@ public class ApiBoardTest {
             api.deleteBoard(boardId);
         });
         step("Проверяем, что доски нет", () -> {
-            api.getBoard404(boardId);
+            api.getBoard(boardId, 404);
         });
     }
 }

@@ -74,6 +74,7 @@ public class BoardCreationForm {
                 .shouldHave(text("Создать"));
         return this;
     }
+
     public BoardCreationForm checkTemplateButton() {
         templateButton.shouldBe(visible)
                 .shouldBe(visible)
@@ -97,9 +98,8 @@ public class BoardCreationForm {
         return this;
     }
 
-    public BoardCreationForm checkCloseButton() {
+    public void checkCloseButton() {
         closeButton.shouldBe(visible);
-        return this;
     }
 
     public BoardCreationForm fillBoardNameField(String name) {
@@ -107,9 +107,8 @@ public class BoardCreationForm {
         return this;
     }
 
-    public BoardCreationForm clickCreateButton() {
+    public void clickCreateButton() {
         createButton.click();
-        return this;
     }
 }
 

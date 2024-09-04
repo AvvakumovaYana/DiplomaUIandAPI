@@ -3,7 +3,8 @@ package pages.web;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -13,21 +14,18 @@ public class MainBoardsPage {
 
     private final String pageTitleValue = "ВАШИ РАБОЧИЕ ПРОСТРАНСТВА";
 
-    public MainBoardsPage openPage() throws InterruptedException {
+    public void openPage() {
         open("/");
         Selenide.refresh();
         pageTitle.shouldBe(visible).shouldHave(text(pageTitleValue));
-        return this;
     }
 
-    public MainBoardsPage clickCreateBoardButton() {
+    public void clickCreateBoardButton() {
         createBoardButton.shouldBe(visible).shouldHave(text("Создать доску"));
         createBoardButton.click();
-        return this;
     }
 
-    public MainBoardsPage checkPageTitle() {
+    public void checkPageTitle() {
         pageTitle.shouldBe(visible).shouldHave(text(pageTitleValue));
-        return this;
     }
 }
