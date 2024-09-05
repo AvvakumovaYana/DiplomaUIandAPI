@@ -1,21 +1,13 @@
-package helpers.api;
+package helpers.api.trello;
 
 import models.BoardModel;
-
-import java.util.regex.Pattern;
+import models.ListModel;
 
 import static io.restassured.RestAssured.given;
 import static specs.HttpSpec.requestSpec;
 import static specs.HttpSpec.responseSpec;
 
-public class TrelloAPI {
-    public static String getBoardId(String boardUrl) throws Exception {
-        var parts = boardUrl.split(Pattern.quote("/"));
-        if (parts.length != 6)
-            throw new Exception(String.format("Wrong format of url \"%s\" count of parts is %s", boardUrl, parts.length));
-        return parts[4];
-    }
-
+public class Boards {
     public BoardModel createBoard(String name) {
         return given(requestSpec)
                 .when()
@@ -42,25 +34,40 @@ public class TrelloAPI {
         return getBoard(id, 200);
     }
 
-    public void deleteBoard(String id) {
+    public void deleteBoard(String boardId) {
         given(requestSpec)
                 .when()
-                .delete("/boards/" + id)
+                .delete("/boards/" + boardId)
                 .then()
                 .spec(responseSpec)
                 .statusCode(200);
     }
 
-    public void updateBoardName(String id, String name) {
+    public void deleteBoard(BoardModel board) {
+        deleteBoard(board.getId());
+    }
+
+    public void updateBoardName(BoardModel board, String name) {
         BoardModel body = new BoardModel();
         body.setName(name);
         given(requestSpec)
                 .when()
                 .body(body)
-                .put("/boards/" + id)
+                .put("/boards/" + board.getId())
                 .then()
                 .spec(responseSpec)
                 .statusCode(200)
                 .extract().as(BoardModel.class);
     }
+
+    public ListModel[] getLists(BoardModel board) {
+        return given(requestSpec)
+                .when()
+                .get("/boards/" + board.getId() + "/lists")
+                .then()
+                .spec(responseSpec)
+                .statusCode(200)
+                .extract().as(ListModel[].class);
+    }
+
 }

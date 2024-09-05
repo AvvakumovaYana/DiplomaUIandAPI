@@ -5,8 +5,9 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BoardModel {
+public class ListModel {
     String id;
     String name;
-    String url;
+    Boolean closed;
+    String idBoard;
 }

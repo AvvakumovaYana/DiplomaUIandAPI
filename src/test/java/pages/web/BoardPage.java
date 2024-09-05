@@ -3,9 +3,11 @@ package pages.web;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
-import helpers.api.TrelloAPI;
+import helpers.api.trello.Boards;
 import lombok.Getter;
 import models.BoardModel;
+
+import java.util.regex.Pattern;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
@@ -29,6 +31,10 @@ public class BoardPage {
     private final SelenideElement deleteBoardFormTitle = $(".TzntopStGOcVjM");
     private final SelenideElement deleteBoardFormText = $(".q2PzD_Dkq1FVX3");
     private final SelenideElement deleteBoardButton = $("[data-testid='close-board-delete-board-confirm-button']");
+    private final SelenideElement createCardButton = $("[data-testid='list-add-card-button']");
+    private final SelenideElement cardNameField = $("[data-testid='list-card-composer-textarea']");
+    private final SelenideElement addCardButton = $("[data-testid='list-card-composer-add-card-button']");
+    private final SelenideElement editorButton = $("[data-testid='quick-card-editor-button']");
 
     @Getter
     private String name;
@@ -133,8 +139,28 @@ public class BoardPage {
         deleteBoardButton.shouldBe(visible).shouldHave(text("Удалить"));
         deleteBoardButton.click();
     }
+    public void clickCreateCardButton() {
+        createCardButton.click();
+    }
+
+    public void fillCardNameField(String value) {
+        cardNameField.setValue(value);
+    }
+
+    public void clickAddCardButton() {
+        addCardButton.click();
+    }
+
+    public void clickEditorButton() {
+        editorButton.click();
+    }
 
     public String getBoardId() throws Exception {
-        return TrelloAPI.getBoardId(WebDriverRunner.getWebDriver().getCurrentUrl());
+        String boardUrl = WebDriverRunner.getWebDriver().getCurrentUrl();
+        var parts = boardUrl.split(Pattern.quote("/"));
+
+        if (parts.length != 6)
+            throw new Exception(String.format("Wrong format of url \"%s\" count of parts is %s", boardUrl, parts.length));
+        return parts[4];
     }
 }
