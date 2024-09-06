@@ -23,7 +23,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Owner("Аввакумова Яна")
 @Tag("web")
-
 public class WebBoardTest extends TestBase {
 
     private final MainBoardsPage mainBoardsPage = new MainBoardsPage();
