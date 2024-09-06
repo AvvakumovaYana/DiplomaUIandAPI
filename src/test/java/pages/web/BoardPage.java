@@ -3,7 +3,6 @@ package pages.web;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
-import helpers.api.trello.Boards;
 import lombok.Getter;
 import models.BoardModel;
 
@@ -34,7 +33,9 @@ public class BoardPage {
     private final SelenideElement createCardButton = $("[data-testid='list-add-card-button']");
     private final SelenideElement cardNameField = $("[data-testid='list-card-composer-textarea']");
     private final SelenideElement addCardButton = $("[data-testid='list-card-composer-add-card-button']");
-    private final SelenideElement editorButton = $("[data-testid='quick-card-editor-button']");
+    //    private final SelenideElement editorButton = $("[data-testid='quick-card-editor-button']");
+    private final SelenideElement cardLabel = $("[data-testid='card-name']");
+
 
     @Getter
     private String name;
@@ -139,6 +140,7 @@ public class BoardPage {
         deleteBoardButton.shouldBe(visible).shouldHave(text("Удалить"));
         deleteBoardButton.click();
     }
+
     public void clickCreateCardButton() {
         createCardButton.click();
     }
@@ -151,8 +153,17 @@ public class BoardPage {
         addCardButton.click();
     }
 
-    public void clickEditorButton() {
-        editorButton.click();
+    public void clickCardLabel() {
+
+        cardLabel.click();
+    }
+
+    public void checkCardLabel(String cardName) {
+        cardLabel.shouldHave(text(cardName));
+    }
+
+    public void checkEmptyCard() {
+        cardLabel.shouldNot(exist);
     }
 
     public String getBoardId() throws Exception {

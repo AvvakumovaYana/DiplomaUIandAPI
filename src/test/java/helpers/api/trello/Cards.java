@@ -18,6 +18,22 @@ public class Cards {
                 .extract().as(CardModel.class);
     }
 
+    public CardModel getCard(CardModel card, int statusCode) {
+        var result = given(requestSpec)
+                .when()
+                .get("/cards/" + card.getId())
+                .then()
+                .spec(responseSpec)
+                .statusCode(statusCode);
+        if (statusCode == 200)
+            return result.extract().as(CardModel.class);
+        return null;
+    }
+
+    public CardModel getCard(CardModel card) {
+        return getCard(card, 200);
+    }
+
     public void deleteCard(CardModel card) {
         given(requestSpec)
                 .when()

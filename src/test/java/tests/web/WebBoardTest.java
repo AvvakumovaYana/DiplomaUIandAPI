@@ -13,7 +13,9 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.web.BoardCreationForm;
 import pages.web.BoardPage;
+import pages.web.CardPage;
 import pages.web.MainBoardsPage;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -161,11 +163,11 @@ public class WebBoardTest extends TestBase {
         var cardName = "Test card";
         BoardPage boardPage = new BoardPage("Board creation test API");
 
-        BoardModel createResponse = step("Создаем доску через API", () -> {
+        BoardModel createdBoard = step("Создаем доску через API", () -> {
             return boardsApi.createBoard(boardPage.getName());
         });
         step("Открываем страницу созданной доски", () -> {
-            boardPage.openPage(createResponse);
+            boardPage.openPage(createdBoard);
         });
         step("Нажимаем кнопку 'Добавить карточку'", () -> {
             boardPage.clickCreateCardButton();
@@ -176,8 +178,8 @@ public class WebBoardTest extends TestBase {
         step("Нажимаем кнопку 'Добавить карточку'", () -> {
             boardPage.clickAddCardButton();
         });
-        step("Проверяем наличие карточки", () -> {
-            var lists = boardsApi.getLists(createResponse);
+        step("Проверяем наличие карточки через API", () -> {
+            var lists = boardsApi.getLists(createdBoard);
             var listCards = new LinkedList<CardModel[]>();
             for (var list : lists) {
                 var cards = listsApi.getCards(list);
@@ -186,28 +188,94 @@ public class WebBoardTest extends TestBase {
             List<CardModel> cards = listCards.stream().flatMap(Arrays::stream).toList();
             assertThat(cards).anyMatch(c -> c.getName().equals(cardName));
         });
+        step("Удаляем доску через API", () -> {
+            boardsApi.deleteBoard(createdBoard);
+        });
     }
 
     @Test
     @DisplayName("Проверка редактирования карточки на доске")
     void cardUpdateTest() {
         BoardPage boardPage = new BoardPage("Board creation test API");
+        CardPage cardPage = new CardPage();
+        String initialCardName = "New card";
+        String newCardName = "Updated card";
 
         BoardModel createdBoard = step("Создаем доску через API", () -> {
             return boardsApi.createBoard(boardPage.getName());
         });
-        ListModel createdList = step("Создаем лист через API", () -> {
+        ListModel createdList = step("Создаем колонку через API", () -> {
             return listsApi.createList("New list", createdBoard);
         });
         CardModel createdCard = step("Создаем карточку через API", () -> {
-            return cardsApi.createCard("New card", createdList);
+            return cardsApi.createCard(initialCardName, createdList);
         });
-
         step("Открываем страницу созданной доски", () -> {
             boardPage.openPage(createdBoard);
         });
-        step("Нажимаем кнопку 'Добавить карточку'", () -> {
-            boardPage.clickEditorButton();
+        step("Проверяем карточку 'New card'", () -> {
+            boardPage.checkCardLabel(initialCardName);
+        });
+        step("Нажимаем на карточку 'New card'", () -> {
+            boardPage.clickCardLabel();
+        });
+        step("Меняем название карточки на 'Updated card'", () -> {
+            cardPage.fillCardLabel(newCardName);
+        });
+        step("Нажимаем кнопку закрытия формы карточки", () -> {
+            cardPage.clickCardCloseButton();
+        });
+        step("Проверяем название карточки", () -> {
+            var updatedCard = cardsApi.getCard(createdCard);
+            assertThat(updatedCard.getName()).isEqualTo(newCardName);
+        });
+        step("Удаляем доску через API", () -> {
+            boardsApi.deleteBoard(createdBoard);
+        });
+    }
+
+    @Test
+    @DisplayName("Проверка удаления карточки на доске")
+    void cardDeleteTest() {
+        BoardPage boardPage = new BoardPage("Board creation test API");
+        CardPage cardPage = new CardPage();
+        String initialCardName = "New card";
+
+        BoardModel createdBoard = step("Создаем доску через API", () -> {
+            return boardsApi.createBoard(boardPage.getName());
+        });
+        ListModel createdList = step("Создаем колонку через API", () -> {
+            return listsApi.createList("New list", createdBoard);
+        });
+        CardModel createdCard = step("Создаем карточку через API", () -> {
+            return cardsApi.createCard(initialCardName, createdList);
+        });
+        step("Открываем страницу созданной доски", () -> {
+            boardPage.openPage(createdBoard);
+        });
+        step("Проверяем карточку 'New card'", () -> {
+            boardPage.checkCardLabel(initialCardName);
+        });
+        step("Нажимаем на карточку 'New card'", () -> {
+            boardPage.clickCardLabel();
+        });
+        step("Нажимаем на кнопку 'Архивация'", () -> {
+            cardPage.clickCardArchiveButton();
+        });
+        step("Нажимаем на кнопку 'Удалить'", () -> {
+            cardPage.clickCardDeleteButton();
+        });
+        step("Нажимаем кнопку 'Удалить' на форме подтвеждения", () -> {
+            cardPage.clickCardNextDeleteButton();
+        });
+        step("Проверяем отсутствие карточки в колонке на доске", () -> {
+            boardPage.checkEmptyCard();
+        });
+        step("Проверяем отсутствие карточки через API", () -> {
+            cardsApi.getCard(createdCard, 404);
+        });
+        step("Удаляем доску через API", () -> {
+            boardsApi.deleteBoard(createdBoard);
         });
     }
 }
