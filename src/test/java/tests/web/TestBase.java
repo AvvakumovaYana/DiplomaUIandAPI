@@ -38,7 +38,7 @@ public class TestBase {
         Configuration.pageLoadStrategy = "eager";
         Configuration.timeout = 6000;
 
-        //Configuration.remote = System.getProperty("Wdhost", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
+        Configuration.remote = System.getProperty("Wdhost", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
         Configuration.browser = System.getProperty("Browser", "chrome");
         if (Configuration.browser.equals("chrome")) {
             Configuration.browserVersion = System.getProperty("ChromeVersion", "126.0");

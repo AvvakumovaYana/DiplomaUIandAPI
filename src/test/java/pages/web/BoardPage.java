@@ -33,9 +33,7 @@ public class BoardPage {
     private final SelenideElement createCardButton = $("[data-testid='list-add-card-button']");
     private final SelenideElement cardNameField = $("[data-testid='list-card-composer-textarea']");
     private final SelenideElement addCardButton = $("[data-testid='list-card-composer-add-card-button']");
-    //    private final SelenideElement editorButton = $("[data-testid='quick-card-editor-button']");
     private final SelenideElement cardLabel = $("[data-testid='card-name']");
-
 
     @Getter
     private String name;

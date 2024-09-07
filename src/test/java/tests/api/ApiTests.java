@@ -49,34 +49,34 @@ public class ApiTests {
     }
 
     @Test
-    @DisplayName("Проверка создания листа через API")
+    @DisplayName("Проверка создания колонки через API")
     void listCreateTest() {
         var newListName = getListName();
 
-        step("Добавляем новый лист на доску", () -> {
+        step("Добавляем новую колонку на доску", () -> {
             listsApi.createList(newListName, board);
         });
 
-        step("Проверяем наличие нового листа", () -> {
+        step("Проверяем наличие новой колонки", () -> {
             var lists = boardsApi.getLists(board);
             assertThat(lists).anyMatch(l -> l.getName().equals(newListName));
         });
     }
 
     @Test
-    @DisplayName("Проверка удаления листа через API")
+    @DisplayName("Проверка удаления колонки через API")
     void listDeleteTest() {
         var newListName = getListName();
 
-        var list = step("Добавляем новый лист на доску", () -> {
+        var list = step("Добавляем новую колонку на доску", () -> {
             return listsApi.createList(newListName, board);
         });
 
-        step("Удаляем новый лист с доски", () -> {
+        step("Удаляем новую колонку с доски", () -> {
             listsApi.archiveList(list);
         });
 
-        step("Проверяем отсутствие нового листа", () -> {
+        step("Проверяем отсутствие новой колонки", () -> {
             var lists = boardsApi.getLists(board);
             assertThat(lists).noneMatch(l -> l.getName().equals(newListName));
         });
@@ -88,39 +88,39 @@ public class ApiTests {
         var newListName = getListName();
         var newCardName = getCardName();
 
-        var list = step("Добавляем новый лист на доску", () -> {
+        var list = step("Добавляем новую колонку на доску", () -> {
             return listsApi.createList(newListName, board);
         });
 
-        step("Добавляем новую карточку на лист", () -> {
+        step("Добавляем новую карточку в колонку", () -> {
             cardsApi.createCard(newCardName, list);
         });
 
-        step("Проверяем изменение названия доски", () -> {
+        step("Проверяем наличие карточки", () -> {
             var cards = listsApi.getCards(list);
             assertThat(cards).anyMatch(c -> c.getName().equals(newCardName));
         });
     }
 
     @Test
-    @DisplayName("Проверка создания карточки через API")
+    @DisplayName("Проверка удаления карточки через API")
     void cardDeleteTest() {
         var newListName = getListName();
         var newCardName = getCardName();
 
-        var list = step("Добавляем новый лист на доску", () -> {
+        var list = step("Добавляем новую колонку на доску", () -> {
             return listsApi.createList(newListName, board);
         });
 
-        var card = step("Добавляем новую карточку на лист", () -> {
+        var card = step("Добавляем новую карточку в колонку", () -> {
             return cardsApi.createCard(newCardName, list);
         });
 
-        step("Удаляем новую карточку с листа", () -> {
+        step("Удаляем новую карточку из колонки", () -> {
             cardsApi.deleteCard(card);
         });
 
-        step("Проверяем изменение названия доски", () -> {
+        step("Проверяем отсутствие карточки", () -> {
             var cards = listsApi.getCards(list);
             assertThat(cards).noneMatch(c -> c.getName().equals(newCardName));
         });

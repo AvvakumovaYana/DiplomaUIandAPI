@@ -69,5 +69,4 @@ public class Boards {
                 .statusCode(200)
                 .extract().as(ListModel[].class);
     }
-
 }

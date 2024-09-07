@@ -11,7 +11,6 @@ public class CardPage {
     private final SelenideElement cardDeleteButton = $("[data-testid='card-back-delete-card-button']");
     private final SelenideElement cardNextDeleteButton = $("[data-testid='popover-confirm-button']");
 
-
     public CardPage fillCardLabel(String cardName) {
         cardLabel.click();
         cardLabel.clear();
