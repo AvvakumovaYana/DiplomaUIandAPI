@@ -81,16 +81,20 @@ public class BoardPage {
         return this;
     }
 
-    public BoardPage clickCloseBoard() {
+    public BoardPage checkCloseBoardCaption(String caption) {
         closeBoard.scrollTo()
                 .shouldBe(visible)
-                .shouldHave(text(" Закрыть доску"))
-                .click();
+                .shouldHave(text(caption));
         return this;
     }
 
-    public BoardPage checkCloseBoardFormTitle() {
-        closeBoardFormTitle.shouldBe(visible).shouldHave(text("Закрытие доски"));
+    public BoardPage clickCloseBoard() {
+        closeBoard.click();
+        return this;
+    }
+
+    public BoardPage checkCloseBoardFormTitle(String title) {
+        closeBoardFormTitle.shouldBe(visible).shouldHave(text(title));
         return this;
     }
 
@@ -100,8 +104,8 @@ public class BoardPage {
         return this;
     }
 
-    public BoardPage checkCloseBoardFormLink() {
-        closeBoardFormLink.shouldBe(visible).shouldHave(text("страницы досок"));
+    public BoardPage checkCloseBoardFormLink(String text) {
+        closeBoardFormLink.shouldBe(visible).shouldHave(text(text));
         return this;
     }
 
@@ -110,20 +114,28 @@ public class BoardPage {
         return this;
     }
 
+    public BoardPage checkCloseBoardButtonCaption(String caption) {
+        closeBoardButton.shouldBe(visible).shouldHave(value(caption));
+        return this;
+    }
+
     public BoardPage clickCloseBoardButton() {
-        closeBoardButton.shouldBe(visible).shouldHave(value("Закрыть"));
         closeBoardButton.click();
         return this;
     }
 
+    public BoardPage checkDeleteBoardCaption(String caption) {
+        deleteBoard.shouldBe(visible).shouldHave(text(caption));
+        return this;
+    }
+
     public BoardPage clickDeleteBoard() {
-        deleteBoard.shouldBe(visible).shouldHave(text("Удалить доску навсегда"));
         deleteBoard.click();
         return this;
     }
 
-    public BoardPage checkDeleteBoardFormTitle() {
-        deleteBoardFormTitle.shouldBe(visible).shouldHave(text("Удалить доску?"));
+    public BoardPage checkDeleteBoardFormTitle(String title) {
+        deleteBoardFormTitle.shouldBe(visible).shouldHave(text(title));
         return this;
     }
 
@@ -134,8 +146,12 @@ public class BoardPage {
         return this;
     }
 
+    public BoardPage checkDeleteBoardButtonCaption(String caption) {
+        deleteBoardButton.shouldBe(visible).shouldHave(text(caption));
+        return this;
+    }
+
     public void clickDeleteBoardButton() {
-        deleteBoardButton.shouldBe(visible).shouldHave(text("Удалить"));
         deleteBoardButton.click();
     }
 

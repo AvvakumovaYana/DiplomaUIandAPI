@@ -41,6 +41,7 @@ public class WebBoardTest extends TestBase {
             mainBoardsPage.openPage();
         });
         step("Открываем форму создания доски", () -> {
+            mainBoardsPage.checkCreateBoardButtonCaption("Создать доску");
             mainBoardsPage.clickCreateBoardButton();
         });
         step("Проверяем содержание формы создания доски", () -> {
@@ -73,6 +74,7 @@ public class WebBoardTest extends TestBase {
             mainBoardsPage.openPage();
         });
         step("Открываем форму создания доски", () -> {
+            mainBoardsPage.checkCreateBoardButtonCaption("Создать доску");
             mainBoardsPage.clickCreateBoardButton();
         });
         step("Заполняем форму и создаем доску", () -> {
@@ -137,16 +139,20 @@ public class WebBoardTest extends TestBase {
         step("Удаляем доску через меню", () -> {
             boardPage
                     .openBoardMenu()
+                    .checkCloseBoardCaption(" Закрыть доску")
                     .clickCloseBoard()
-                    .checkCloseBoardFormTitle()
+                    .checkCloseBoardFormTitle("Закрытие доски")
                     .checkCloseBoardFormText()
-                    .checkCloseBoardFormLink()
+                    .checkCloseBoardFormLink("страницы досок")
                     .checkFormCloseButton()
+                    .checkCloseBoardButtonCaption("Закрыть")
                     .clickCloseBoardButton()
+                    .checkDeleteBoardCaption("Удалить доску навсегда")
                     .clickDeleteBoard()
-                    .checkDeleteBoardFormTitle()
+                    .checkDeleteBoardFormTitle("Удалить доску?")
                     .checkDeleteBoardFormText()
                     .checkFormCloseButton()
+                    .checkDeleteBoardButtonCaption("Удалить")
                     .clickDeleteBoardButton();
         });
         step("Проверяем, что отображется страница досок пользователя", () -> {

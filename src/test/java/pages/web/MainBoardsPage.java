@@ -20,8 +20,11 @@ public class MainBoardsPage {
         pageTitle.shouldBe(visible).shouldHave(text(pageTitleValue));
     }
 
+    public void checkCreateBoardButtonCaption(String caption) {
+        createBoardButton.shouldBe(visible).shouldHave(text(caption));
+    }
+
     public void clickCreateBoardButton() {
-        createBoardButton.shouldBe(visible).shouldHave(text("Создать доску"));
         createBoardButton.click();
     }
 
