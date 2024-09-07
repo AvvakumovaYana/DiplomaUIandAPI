@@ -73,34 +73,37 @@
   
 ***Параметры запуска для UI и Api:***
 ```
-clean
-${TEST_TASK}
+clean ${TEST_TASK}
 -DBrowser=${BROWSER}
 -DChromeVersion=${CHROME_VERSION}
 -DFirefoxVersion=${FIREFOX_VERSION}
 -DBrowserSize=${BROWSER_SIZE}
 -DWdhost=${WDHOST}
--Dapikey=${ApiKey}
--Dapitoken=${ApiToken}
+-DapiKey=${apiKey}
+-Dtoken=${token}
+-Dlogin=${login}
+-Dpassword=${password}
 ```
 
 ***Важно!***
 ```
-Для запуска Web-тестов данного проекта необходимо в парамеры сборки Jenkins добавить файл "Cookies.data".
-Данный файл генерируется при локальном запуске Web-тестов.
-Файл содрежит куки, необходимые для авторизации на тестрируемой странице.
+Для запуска тестов данного проекта необходимо установить в настройках сборки apiKey и token от API Trello, а также login и password от существующего аккаунта Trello.
 ```
 
 Для запуска сборки необходимо перейти в раздел <code>Собрать с параметрами</code>, задать параметры и нажать кнопку <code>Собрать</code>.
 
 <p align="center">
-<img title="Jenkins" src="media/screenshots/JParameters1.png"> 
-<img title="Jenkins" src="media/screenshots/JParameters2.png">
+<img title="Jenkins" src="media/screenshots/JParameters.png">
 </p>
 
 ***Параметры запуска для Mobile:***
 ```
 clean main_mobile
+```
+
+***Важно!***
+```
+Для запуска тестов данного проекта необходимо установить в настройках сборки apiKey и token от API Trello, login и password от существующего аккаунта Trello, а также browserstackUsername и browserstackPassword от аккаунта BrowserStack.
 ```
 
 После выполнения сборки, в блоке <code>История сборок</code> напротив номера сборки появится значок <code>Allure Report</code>, при клике на который открывается страница со сформированным html-отчетом,
