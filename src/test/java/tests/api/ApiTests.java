@@ -49,6 +49,7 @@ public class ApiTests {
     }
 
     @Test
+    @AllureId("34382")
     @DisplayName("Проверка создания колонки через API")
     void listCreateTest() {
         var newListName = getListName();
@@ -64,6 +65,7 @@ public class ApiTests {
     }
 
     @Test
+    @AllureId("34384")
     @DisplayName("Проверка удаления колонки через API")
     void listDeleteTest() {
         var newListName = getListName();
@@ -83,6 +85,7 @@ public class ApiTests {
     }
 
     @Test
+    @AllureId("34383")
     @DisplayName("Проверка создания карточки через API")
     void cardCreateTest() {
         var newListName = getListName();
@@ -103,6 +106,7 @@ public class ApiTests {
     }
 
     @Test
+    @AllureId("34385")
     @DisplayName("Проверка удаления карточки через API")
     void cardDeleteTest() {
         var newListName = getListName();

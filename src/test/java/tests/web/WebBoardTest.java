@@ -158,6 +158,7 @@ public class WebBoardTest extends TestBase {
     }
 
     @Test
+    @AllureId("34387")
     @DisplayName("Проверка создания карточки на доске")
     void cardCreationTest() {
         var cardName = "Test card";
@@ -194,6 +195,7 @@ public class WebBoardTest extends TestBase {
     }
 
     @Test
+    @AllureId("34386")
     @DisplayName("Проверка редактирования карточки на доске")
     void cardUpdateTest() {
         BoardPage boardPage = new BoardPage("Board creation test API");
@@ -235,6 +237,7 @@ public class WebBoardTest extends TestBase {
     }
 
     @Test
+    @AllureId("34391")
     @DisplayName("Проверка удаления карточки на доске")
     void cardDeleteTest() {
         BoardPage boardPage = new BoardPage("Board creation test API");
