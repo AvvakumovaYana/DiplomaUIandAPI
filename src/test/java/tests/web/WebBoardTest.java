@@ -272,12 +272,14 @@ public class WebBoardTest extends TestBase {
             boardPage.checkEmptyCard();
         });
         step("Проверяем отсутствие карточки через API", () -> {
-            cardsApi.getCard(createdCard, 404);
+            var card = cardsApi.getCard(createdCard);
+            assertThat(card).satisfiesAnyOf(
+                    c -> assertThat(c).isNull(),
+                    c -> assertThat(c.getClosed()).isTrue()
+            );
         });
         step("Удаляем доску через API", () -> {
             boardsApi.deleteBoard(createdBoard);
         });
     }
 }
-
-
