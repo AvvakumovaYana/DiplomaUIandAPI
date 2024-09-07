@@ -98,7 +98,14 @@ clean ${TEST_TASK}
 
 ***Параметры запуска для Mobile:***
 ```
-clean main_mobile
+clean
+main_mobile
+-DapiKey=${apiKey}
+-Dtoken=${token}
+-Dlogin=${login}
+-Dpassword=${password}
+-DbrowserstackUsername=${browserstackUsername}
+-DbrowserstackPassword=${browserstackPassword}
 ```
 
 ***Важно!***
