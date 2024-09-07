@@ -23,8 +23,8 @@ public class BoardCreationForm {
     private final SelenideElement licensesRulesLink = $("[href='https://unsplash.com/license']");
     private final SelenideElement closeButton = $("[data-testid='popover-close']");
 
-    public BoardCreationForm checkFormTitle() {
-        formTitle.shouldBe(visible).shouldHave(text("Создать доску"));
+    public BoardCreationForm checkFormTitle(String title) {
+        formTitle.shouldBe(visible).shouldHave(text(title));
         return this;
     }
 
@@ -33,8 +33,8 @@ public class BoardCreationForm {
         return this;
     }
 
-    public BoardCreationForm checkLabelBackground() {
-        labelBackground.shouldBe(visible).shouldHave(text("Фон"));
+    public BoardCreationForm checkLabelBackground(String text) {
+        labelBackground.shouldBe(visible).shouldHave(text(text));
         return this;
     }
 
@@ -43,8 +43,8 @@ public class BoardCreationForm {
         return this;
     }
 
-    public BoardCreationForm checkBoardNameLabel() {
-        boardNameLabel.shouldBe(visible).shouldHave(text("Заголовок доски"));
+    public BoardCreationForm checkBoardNameLabel(String text) {
+        boardNameLabel.shouldBe(visible).shouldHave(text(text));
         return this;
     }
 
@@ -53,8 +53,8 @@ public class BoardCreationForm {
         return this;
     }
 
-    public BoardCreationForm checkSetBoardNameLabel() {
-        setBoardNameLabel.shouldBe(visible).shouldHave(text("Укажите название доски."));
+    public BoardCreationForm checkSetBoardNameLabel(String text) {
+        setBoardNameLabel.shouldBe(visible).shouldHave(text(text));
         return this;
     }
 
@@ -63,38 +63,38 @@ public class BoardCreationForm {
         return this;
     }
 
-    public BoardCreationForm checkBoardVisibilityField() {
-        boardVisibilityField.shouldBe(visible).shouldHave(text("Рабочее пространство"));
+    public BoardCreationForm checkBoardVisibilityField(String caption) {
+        boardVisibilityField.shouldBe(visible).shouldHave(text(caption));
         return this;
     }
 
-    public BoardCreationForm checkCreateButton() {
+    public BoardCreationForm checkCreateButton(String caption) {
         createButton.shouldBe(visible)
                 .shouldHave(attribute("disabled"))
-                .shouldHave(text("Создать"));
+                .shouldHave(text(caption));
         return this;
     }
 
-    public BoardCreationForm checkTemplateButton() {
+    public BoardCreationForm checkTemplateButton(String caption) {
         templateButton.shouldBe(visible)
                 .shouldBe(visible)
-                .shouldHave(text("Сделать по шаблону"));
+                .shouldHave(text(caption));
         return this;
     }
 
-    public BoardCreationForm checkAgreementText() {
+    public BoardCreationForm checkAgreementText(String text) {
         agreementText.shouldBe(visible)
-                .shouldHave(text("Используя изображения с сайта Unsplash, вы принимаете его"));
+                .shouldHave(text(text));
         return this;
     }
 
-    public BoardCreationForm checkUseTermsLink() {
-        useTermsLink.shouldBe(visible).shouldHave(text("Условия использования"));
+    public BoardCreationForm checkUseTermsLink(String text) {
+        useTermsLink.shouldBe(visible).shouldHave(text(text));
         return this;
     }
 
-    public BoardCreationForm checkLicensesRulesLink() {
-        licensesRulesLink.shouldBe(visible).shouldHave(text("правила лицензии"));
+    public BoardCreationForm checkLicensesRulesLink(String text) {
+        licensesRulesLink.shouldBe(visible).shouldHave(text(text));
         return this;
     }
 

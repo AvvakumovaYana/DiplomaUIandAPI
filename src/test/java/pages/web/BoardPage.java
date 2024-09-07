@@ -20,16 +20,6 @@ public class BoardPage {
     private final SelenideElement secondColumnTitle = $(byText("В процессе"));
     private final SelenideElement thirdColumnTitle = $(byText("Готово"));
     private final SelenideElement boardMenu = $("[aria-label='Меню']");
-    private final SelenideElement closeBoard = $(".js-close-board");
-    private final SelenideElement closeBoardFormTitle = $(".pop-over-header-title");
-    private final SelenideElement closeBoardFormText = $(".pop-over-content");
-    private final SelenideElement closeBoardFormLink = $("[href^='/u/user'][href$='/boards']");
-    private final SelenideElement formCloseButton = $("[data-testid='popover-close']");
-    private final SelenideElement closeBoardButton = $("[data-testid='close-board-confirm-button']");
-    private final SelenideElement deleteBoard = $("[data-testid='close-board-delete-board-button']");
-    private final SelenideElement deleteBoardFormTitle = $(".TzntopStGOcVjM");
-    private final SelenideElement deleteBoardFormText = $(".q2PzD_Dkq1FVX3");
-    private final SelenideElement deleteBoardButton = $("[data-testid='close-board-delete-board-confirm-button']");
     private final SelenideElement createCardButton = $("[data-testid='list-add-card-button']");
     private final SelenideElement cardNameField = $("[data-testid='list-card-composer-textarea']");
     private final SelenideElement addCardButton = $("[data-testid='list-card-composer-add-card-button']");
@@ -38,8 +28,12 @@ public class BoardPage {
     @Getter
     private String name;
 
+    @Getter
+    private final BoardMenu menu;
+
     public BoardPage(String name) {
         this.name = name;
+        this.menu = new BoardMenu();
     }
 
     public BoardPage checkBoardTitle() {
@@ -79,80 +73,6 @@ public class BoardPage {
         Selenide.refresh();
         boardMenu.click();
         return this;
-    }
-
-    public BoardPage checkCloseBoardCaption(String caption) {
-        closeBoard.scrollTo()
-                .shouldBe(visible)
-                .shouldHave(text(caption));
-        return this;
-    }
-
-    public BoardPage clickCloseBoard() {
-        closeBoard.click();
-        return this;
-    }
-
-    public BoardPage checkCloseBoardFormTitle(String title) {
-        closeBoardFormTitle.shouldBe(visible).shouldHave(text(title));
-        return this;
-    }
-
-    public BoardPage checkCloseBoardFormText() {
-        closeBoardFormText.shouldBe(visible)
-                .shouldHave(text("Закрытые доски можно найти и повторно открыть в нижней части "));
-        return this;
-    }
-
-    public BoardPage checkCloseBoardFormLink(String text) {
-        closeBoardFormLink.shouldBe(visible).shouldHave(text(text));
-        return this;
-    }
-
-    public BoardPage checkFormCloseButton() {
-        formCloseButton.shouldBe(visible);
-        return this;
-    }
-
-    public BoardPage checkCloseBoardButtonCaption(String caption) {
-        closeBoardButton.shouldBe(visible).shouldHave(value(caption));
-        return this;
-    }
-
-    public BoardPage clickCloseBoardButton() {
-        closeBoardButton.click();
-        return this;
-    }
-
-    public BoardPage checkDeleteBoardCaption(String caption) {
-        deleteBoard.shouldBe(visible).shouldHave(text(caption));
-        return this;
-    }
-
-    public BoardPage clickDeleteBoard() {
-        deleteBoard.click();
-        return this;
-    }
-
-    public BoardPage checkDeleteBoardFormTitle(String title) {
-        deleteBoardFormTitle.shouldBe(visible).shouldHave(text(title));
-        return this;
-    }
-
-    public BoardPage checkDeleteBoardFormText() {
-        deleteBoardFormText.shouldBe(visible)
-                .shouldHave(text("Все списки, карточки и действия будут удалены, и вы не сможете повторно открыть доску. " +
-                        "Отмена невозможна."));
-        return this;
-    }
-
-    public BoardPage checkDeleteBoardButtonCaption(String caption) {
-        deleteBoardButton.shouldBe(visible).shouldHave(text(caption));
-        return this;
-    }
-
-    public void clickDeleteBoardButton() {
-        deleteBoardButton.click();
     }
 
     public void clickCreateCardButton() {

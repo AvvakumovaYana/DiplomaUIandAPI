@@ -46,20 +46,20 @@ public class WebBoardTest extends TestBase {
         });
         step("Проверяем содержание формы создания доски", () -> {
             boardCreationForm
-                    .checkFormTitle()
+                    .checkFormTitle("Создать доску")
                     .checkBoardPreview()
-                    .checkLabelBackground()
+                    .checkLabelBackground("Фон")
                     .checkBackgroundTypes()
-                    .checkBoardNameLabel()
+                    .checkBoardNameLabel("Заголовок доски")
                     .checkBoardNameField()
-                    .checkSetBoardNameLabel()
+                    .checkSetBoardNameLabel("Укажите название доски.")
                     .checkBoardVisibilityLabel()
-                    .checkBoardVisibilityField()
-                    .checkCreateButton()
-                    .checkTemplateButton()
-                    .checkAgreementText()
-                    .checkUseTermsLink()
-                    .checkLicensesRulesLink()
+                    .checkBoardVisibilityField("Рабочее пространство")
+                    .checkCreateButton("Создать")
+                    .checkTemplateButton("Сделать по шаблону")
+                    .checkAgreementText("Используя изображения с сайта Unsplash, вы принимаете его")
+                    .checkUseTermsLink("Условия использования")
+                    .checkLicensesRulesLink("правила лицензии")
                     .checkCloseButton();
         });
     }
@@ -79,9 +79,9 @@ public class WebBoardTest extends TestBase {
         });
         step("Заполняем форму и создаем доску", () -> {
             boardCreationForm
-                    .checkFormTitle()
+                    .checkFormTitle("Создать доску")
                     .fillBoardNameField(boardPage.getName())
-                    .checkBoardVisibilityField()
+                    .checkBoardVisibilityField("Рабочее пространство")
                     .clickCreateButton();
         });
         String boardId = step("Проверяем форму созданной доски", () -> {
@@ -139,6 +139,7 @@ public class WebBoardTest extends TestBase {
         step("Удаляем доску через меню", () -> {
             boardPage
                     .openBoardMenu()
+                    .getMenu()
                     .checkCloseBoardCaption(" Закрыть доску")
                     .clickCloseBoard()
                     .checkCloseBoardFormTitle("Закрытие доски")
