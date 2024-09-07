@@ -88,7 +88,6 @@ public class BoardPage {
     }
 
     public void clickCardLabel() {
-
         cardLabel.click();
     }
 
