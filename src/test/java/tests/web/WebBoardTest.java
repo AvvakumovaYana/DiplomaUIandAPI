@@ -41,8 +41,8 @@ public class WebBoardTest extends TestBase {
         });
         step("Проверяем название созданной доски через API", () -> {
             sleep(1000);
-            BoardModel getResponse = boardsApi.getBoard(boardPage.getBoardId());
-            assertThat(getResponse.getName()).isEqualTo(boardPage.getName());
+            BoardModel board = boardsApi.getBoard(boardPage.getBoardId());
+            assertThat(board.getName()).isEqualTo(boardPage.getName());
         });
         step("Удаляем доску через API", () -> {
             boardsApi.deleteBoard(boardPage.getBoardId());
@@ -65,8 +65,8 @@ public class WebBoardTest extends TestBase {
             boardPage.changeBoardTitle("Board update test UI");
         });
         step("Проверяем изменение названия доски через API", () -> {
-            BoardModel getResponse = boardsApi.getBoard(boardPage.getBoardId());
-            assertThat(getResponse.getName()).isEqualTo(boardPage.getName());
+            BoardModel board = boardsApi.getBoard(boardPage.getBoardId());
+            assertThat(board.getName()).isEqualTo(boardPage.getName());
         });
         step("Удаляем доску через API", () -> {
             boardsApi.deleteBoard(createdBoard);
@@ -96,7 +96,7 @@ public class WebBoardTest extends TestBase {
         });
         step("Проверяем через API, что доски нет", () -> {
             sleep(1000);
-            boardsApi.getBoard(boardPage.getBoardId(), 404);
+            assertThat(boardsApi.isBoardExists(boardPage.getBoardId())).isFalse();
         });
     }
 

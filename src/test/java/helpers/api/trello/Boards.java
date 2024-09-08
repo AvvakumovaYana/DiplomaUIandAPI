@@ -22,20 +22,23 @@ public class Boards {
         return createBoard(name, false);
     }
 
-    public BoardModel getBoard(String id, int statusCode) {
-        var result = given(requestSpec)
+    public BoardModel getBoard(String id) {
+        return given(requestSpec)
                 .when()
                 .get("/boards/" + id)
                 .then()
                 .spec(responseSpec)
-                .statusCode(statusCode);
-        if (statusCode == 200)
-            return result.extract().as(BoardModel.class);
-        return null;
+                .statusCode(200)
+                .extract().as(BoardModel.class);
     }
 
-    public BoardModel getBoard(String id) {
-        return getBoard(id, 200);
+    public boolean isBoardExists(String id) {
+        var result = given(requestSpec)
+                .when()
+                .get("/boards/" + id)
+                .then()
+                .spec(responseSpec);
+        return result.extract().statusCode() == 200;
     }
 
     public void deleteBoard(String boardId) {
@@ -60,8 +63,7 @@ public class Boards {
                 .put("/boards/" + board.getId())
                 .then()
                 .spec(responseSpec)
-                .statusCode(200)
-                .extract().as(BoardModel.class);
+                .statusCode(200);
     }
 
     public ListModel[] getLists(BoardModel board) {
