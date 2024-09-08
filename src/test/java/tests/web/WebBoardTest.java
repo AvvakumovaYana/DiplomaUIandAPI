@@ -221,6 +221,7 @@ public class WebBoardTest extends TestBase {
     }
 
     @Test
+    @AllureId("34395")
     @DisplayName("Проверка создания колонки на доске")
     void listCreationTest() {
         var listName = "Test list";
