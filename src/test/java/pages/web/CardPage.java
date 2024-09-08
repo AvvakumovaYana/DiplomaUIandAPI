@@ -9,7 +9,7 @@ public class CardPage {
     private final SelenideElement cardCloseButton = $("[data-testid='CloseIcon']");
     private final SelenideElement cardArchiveButton = $("[data-testid='card-back-archive-button']");
     private final SelenideElement cardDeleteButton = $("[data-testid='card-back-delete-card-button']");
-    private final SelenideElement cardNextDeleteButton = $("[data-testid='popover-confirm-button']");
+    private final SelenideElement cardDeleteConfirmButton = $("[data-testid='popover-confirm-button']");
 
     public void fillCardLabel(String cardName) {
         cardLabel.click();
@@ -30,7 +30,7 @@ public class CardPage {
         cardDeleteButton.click();
     }
 
-    public void clickCardNextDeleteButton() {
-        cardNextDeleteButton.click();
+    public void clickCardDeleteConfirmButton() {
+        cardDeleteConfirmButton.click();
     }
 }

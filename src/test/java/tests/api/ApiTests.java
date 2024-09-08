@@ -1,12 +1,10 @@
 package tests.api;
 
-import helpers.api.trello.Boards;
-import helpers.api.trello.Cards;
-import helpers.api.trello.Lists;
 import io.qameta.allure.AllureId;
 import io.qameta.allure.Owner;
-import models.BoardModel;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
@@ -15,24 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Owner("Аввакумова Яна")
 @Tag("api")
-public class ApiTests {
-    private final static Boards boardsApi = new Boards();
-    private final static Lists listsApi = new Lists();
-    private final static Cards cardsApi = new Cards();
-
-    private static final String boardName = "Board for API test";
-    private static BoardModel board;
-
-    @BeforeAll
-    static void PrepareBoard() {
-        board = boardsApi.createBoard(boardName);
-    }
-
-    @AfterAll
-    static void DeleteBoard() {
-        boardsApi.deleteBoard(board);
-    }
-
+public class ApiTests extends ApiTestBase {
     @Test
     @AllureId("34137")
     @DisplayName("Проверка редактирования доски через API")
@@ -128,13 +109,5 @@ public class ApiTests {
             var cards = listsApi.getCards(list);
             assertThat(cards).noneMatch(c -> c.getName().equals(newCardName));
         });
-    }
-
-    private String getListName() {
-        return "New list " + LocalDateTime.now();
-    }
-
-    private String getCardName() {
-        return "New card " + LocalDateTime.now();
     }
 }
