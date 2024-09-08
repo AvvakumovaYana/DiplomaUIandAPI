@@ -8,14 +8,18 @@ import static specs.HttpSpec.requestSpec;
 import static specs.HttpSpec.responseSpec;
 
 public class Boards {
-    public BoardModel createBoard(String name) {
+    public BoardModel createBoard(String name, boolean withDefaultLists) {
         return given(requestSpec)
                 .when()
-                .post("/boards/?name=" + name)
+                .post("/boards/?name=" + name + "&defaultLists=" + withDefaultLists)
                 .then()
                 .spec(responseSpec)
                 .statusCode(200)
                 .extract().as(BoardModel.class);
+    }
+
+    public BoardModel createBoard(String name) {
+        return createBoard(name, false);
     }
 
     public BoardModel getBoard(String id, int statusCode) {

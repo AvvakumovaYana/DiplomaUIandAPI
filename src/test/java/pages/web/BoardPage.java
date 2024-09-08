@@ -18,6 +18,10 @@ public class BoardPage {
     private final SelenideElement cardNameField = $("[data-testid='list-card-composer-textarea']");
     private final SelenideElement saveCardButton = $("[data-testid='list-card-composer-add-card-button']");
     private final SelenideElement cardLabel = $("[data-testid='card-name']");
+    private final SelenideElement addListButton = $("[data-testid='list-composer-button']");
+    private final SelenideElement listNameField = $("[data-testid='list-name-textarea']");
+    private final SelenideElement saveListButton = $("[data-testid='list-composer-add-list-button']");
+
     @Getter
     private final BoardMenu menu;
     @Getter
@@ -58,6 +62,19 @@ public class BoardPage {
 
     public void clickCardLabel() {
         cardLabel.click();
+    }
+
+    public BoardPage clickAddListButton() {
+        addListButton.click();
+        return this;
+    }
+
+    public void fillListNameField(String value) {
+        listNameField.setValue(value);
+    }
+
+    public void clickSaveListButton() {
+        saveListButton.click();
     }
 
     public String getBoardId() throws Exception {

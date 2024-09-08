@@ -40,6 +40,7 @@ public class WebBoardTest extends TestBase {
                     .clickCreateButton();
         });
         step("Проверяем название созданной доски через API", () -> {
+            sleep(1000);
             BoardModel getResponse = boardsApi.getBoard(boardPage.getBoardId());
             assertThat(getResponse.getName()).isEqualTo(boardPage.getName());
         });
@@ -107,7 +108,7 @@ public class WebBoardTest extends TestBase {
         BoardPage boardPage = new BoardPage("Board creation test API");
 
         BoardModel createdBoard = step("Создаем доску через API", () -> {
-            return boardsApi.createBoard(boardPage.getName());
+            return boardsApi.createBoard(boardPage.getName(), true);
         });
         step("Открываем страницу созданной доски", () -> {
             boardPage.openPage(createdBoard);
@@ -213,6 +214,36 @@ public class WebBoardTest extends TestBase {
                     c -> assertThat(c).isNull(),
                     c -> assertThat(c.getClosed()).isTrue()
             );
+        });
+        step("Удаляем доску через API", () -> {
+            boardsApi.deleteBoard(createdBoard);
+        });
+    }
+
+    @Test
+    @DisplayName("Проверка создания колонки на доске")
+    void listCreationTest() {
+        var listName = "Test list";
+        BoardPage boardPage = new BoardPage("Board creation test API");
+
+        BoardModel createdBoard = step("Создаем доску через API", () -> {
+            return boardsApi.createBoard(boardPage.getName());
+        });
+        step("Открываем страницу созданной доски", () -> {
+            boardPage.openPage(createdBoard);
+        });
+        step("Нажимаем кнопку 'Добавить список'", () -> {
+            boardPage.clickAddListButton();
+        });
+        step("Заполняем поле 'Введите имя колонки…'", () -> {
+            boardPage.fillListNameField(listName);
+        });
+        step("Нажимаем кнопку 'Добавить список'", () -> {
+            boardPage.clickSaveListButton();
+        });
+        step("Проверяем наличие колонки через API", () -> {
+            var lists = boardsApi.getLists(createdBoard);
+            assertThat(lists).anyMatch(l -> l.getName().equals(listName));
         });
         step("Удаляем доску через API", () -> {
             boardsApi.deleteBoard(createdBoard);
