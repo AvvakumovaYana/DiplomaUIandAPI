@@ -4,3 +4,7 @@
 /.gradle/
 /gradlew
 /gradlew.bat
+/api_credentials.properties
+/selenoid_credentials.properties
+/web_credentials.properties
+/Cookies.data

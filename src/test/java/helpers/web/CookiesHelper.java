@@ -8,7 +8,6 @@ import org.openqa.selenium.Cookie;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -17,30 +16,34 @@ import static com.codeborne.selenide.Selenide.open;
 public class CookiesHelper {
     private static final String cookieFileName = "Cookies.data";
 
-    public void saveCookies() throws IOException {
-        open("/");
+    public void saveCookies() {
+        try {
+            open("/");
 
-        var file = new File(cookieFileName);
+            var file = new File(cookieFileName);
 
-        file.delete();
-        file.createNewFile();
-        FileWriter fw = new FileWriter(file);
-        CSVWriter csv = new CSVWriter(fw);
-        var cookies = WebDriverRunner.getWebDriver().manage().getCookies();
-        for (Cookie cookie : cookies) {
-            var expiry = cookie.getExpiry();
+            file.delete();
+            file.createNewFile();
+            FileWriter fw = new FileWriter(file);
+            CSVWriter csv = new CSVWriter(fw);
+            var cookies = WebDriverRunner.getWebDriver().manage().getCookies();
+            for (Cookie cookie : cookies) {
+                var expiry = cookie.getExpiry();
 
-            var line = new String[6];
-            line[0] = cookie.getName();
-            line[1] = cookie.getValue();
-            line[2] = cookie.getDomain();
-            line[3] = cookie.getPath();
-            line[4] = (expiry != null ? String.valueOf(expiry.getTime()) : "null");
-            line[5] = String.valueOf(cookie.isSecure());
-            csv.writeNext(line);
+                var line = new String[6];
+                line[0] = cookie.getName();
+                line[1] = cookie.getValue();
+                line[2] = cookie.getDomain();
+                line[3] = cookie.getPath();
+                line[4] = (expiry != null ? String.valueOf(expiry.getTime()) : "null");
+                line[5] = String.valueOf(cookie.isSecure());
+                csv.writeNext(line);
+            }
+            csv.close();
+            fw.close();
+        } catch (Exception e) {
+            System.out.println("Ошибка получения куки через форму логина, используем существующий файл");
         }
-        csv.close();
-        fw.close();
     }
 
     public void loadCookies() throws Exception {

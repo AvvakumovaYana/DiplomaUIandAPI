@@ -8,8 +8,10 @@ import models.ListModel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import pages.web.BoardCreationForm;
 import pages.web.BoardPage;
 import pages.web.CardPage;
+import pages.web.MainBoardsPage;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -22,6 +24,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Owner("Аввакумова Яна")
 @Tag("web")
 public class WebBoardTest extends TestBase {
+    protected final MainBoardsPage mainBoardsPage = new MainBoardsPage();
+    protected final BoardCreationForm boardCreationForm = new BoardCreationForm();
+
     @Test
     @AllureId("34132")
     @DisplayName("Проверка создания доски c типом видимости: рабочее пространство")

@@ -19,15 +19,19 @@ public class LoginPage {
     private static final WebCredentials webCredentials = ConfigFactory.create(WebCredentials.class, System.getProperties());
 
     public static void login() {
-        open("/");
+        try {
+            open("/");
 
-        loginButton.click();
-        usernameField.setValue(webCredentials.login());
-        loginSubmitButton.click();
-        passwordField.shouldBe(visible, Duration.ofSeconds(10));
-        passwordField.setValue(webCredentials.password());
-        loginSubmitButton.click();
+            loginButton.click();
+            usernameField.setValue(webCredentials.login());
+            loginSubmitButton.click();
+            passwordField.shouldBe(visible, Duration.ofSeconds(10));
+            passwordField.setValue(webCredentials.password());
+            loginSubmitButton.click();
 
-        sleep(1000);
+            sleep(1000);
+        } catch (Exception e) {
+            System.out.println("Ошибка получения куки через форму логина, используем существующий файл");
+        }
     }
 }

@@ -14,28 +14,37 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import pages.web.BoardCreationForm;
 import pages.web.LoginPage;
-import pages.web.MainBoardsPage;
 
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.open;
 
 public class TestBase {
-
-    private static final LoginPage loginPage = new LoginPage();
     private static final SelenoidCredentials selenoidCredentials = ConfigFactory.create(SelenoidCredentials.class, System.getProperties());
     private static final CommonConfig commonConfig = ConfigFactory.create(CommonConfig.class, System.getProperties());
     private static final CookiesHelper cookiesHelper = new CookiesHelper();
-    protected final MainBoardsPage mainBoardsPage = new MainBoardsPage();
-    protected final BoardCreationForm boardCreationForm = new BoardCreationForm();
+
     protected final Boards boardsApi = new Boards();
     protected final Lists listsApi = new Lists();
     protected final Cards cardsApi = new Cards();
 
     @BeforeAll
     static void beforeAll() throws Exception {
+        SetConfiguration();
+        MakeCookies();
+        open("/");
+    }
+
+    @AfterEach
+    void addAttachments() {
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
+    }
+
+    private static void SetConfiguration() throws Exception {
         Configuration.baseUrl = commonConfig.baseUri();
         Configuration.pageLoadStrategy = "eager";
         Configuration.timeout = 6000;
@@ -60,24 +69,11 @@ public class TestBase {
                 "enableVideo", true
         ));
         Configuration.browserCapabilities = capabilities;
-
-        try {
-            LoginPage.login();
-            cookiesHelper.saveCookies();
-        } catch (Exception e) {
-            System.out.println("Ошибка получения куки через форму логина, используем существующий файл");
-        }
-
-        cookiesHelper.loadCookies();
-
-        open("/");
     }
 
-    @AfterEach
-    void addAttachments() {
-        Attach.screenshotAs("Last screenshot");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
-        Attach.addVideo();
+    private static void MakeCookies() throws Exception {
+        LoginPage.login();
+        cookiesHelper.saveCookies();
+        cookiesHelper.loadCookies();
     }
 }
