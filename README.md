@@ -14,21 +14,21 @@
 
 ## Описание проекта и используемый стек
 <p align="center">
-<a href="https://www.jetbrains.com/idea/"><img width="6%" title="IntelliJ IDEA" src="media/logo/Intelij_IDEA.svg"/></a> 
-<a href="https://www.java.com/"><img width="6%" title="Java" src="media/logo/Java.svg"/></a>
-<a href="https://gradle.org/"><img width="6%" title="Gradle" src="media/logo/Gradle.svg"/></a> 
-<a href="https://selenide.org/"><img width="6%" title="Selenide" src="media/logo/Selenide.svg"/></a> 
-<a href="https://aerokube.com/selenoid/"><img width="6%" title="Selenoid" src="media/logo/Selenoid.svg"/></a>
-<a href="https://rest-assured.io"><img width="6%" title="REST-Assured" src="media/logo/RestAssured.svg"/></a>
-<a href="https://github.com/allure-framework/allure2"><img width="6%" title="Allure Report" src="media/logo/Allure_Report.svg"/></a>
-<a href="https://qameta.io"><img width="6%" title="Allure TestOps" src="media/logo/Allure_TO.svg"/></a>
-<a href="https://junit.org/junit5/"><img width="6%" title="JUnit5" src="media/logo/JUnit5.svg"/></a> 
-<a href="https://github.com/"><img width="6%" title="GitHub" src="media/logo/GitHub.svg"/></a> 
-<a href="https://www.jenkins.io/"><img width="6%" title="Jenkins" src="media/logo/Jenkins.svg"/></a> 
-<a href="https://telegram.org/"><img width="6%" title="Telegram" src="media/logo/Telegram.svg"/></a>  
-<a href="https://app-automate.browserstack.com/"><img width="6%" title="BrowserStack" src="media/logo/Browserstack.svg"/></a>  
-<a href="https://developer.android.com/studio"><img width="6%" title="Android Studio.svg" src="media/logo/Android_Studio.svg"/></a>   
-<a href="https://appium.io"><img width="6%" title="Appium" src="media/logo/Appium.svg"/></a>   
+<a href="https://www.jetbrains.com/idea/"><img title="IntelliJ IDEA" src="media/logo/Intelij_IDEA.svg" height="50" width="50"/></a> 
+<a href="https://www.java.com/"><img title="Java" src="media/logo/Java.svg" height="50" width="50"/></a>
+<a href="https://gradle.org/"><img title="Gradle" src="media/logo/Gradle.svg" height="50" width="50"/></a> 
+<a href="https://selenide.org/"><img title="Selenide" src="media/logo/Selenide.svg" height="50" width="50"/></a> 
+<a href="https://aerokube.com/selenoid/"><img title="Selenoid" src="media/logo/Selenoid.svg" height="50" width="50"/></a>
+<a href="https://rest-assured.io"><img title="REST-Assured" src="media/logo/RestAssured.svg" height="50" width="50"/></a>
+<a href="https://github.com/allure-framework/allure2"><img title="Allure Report" src="media/logo/Allure_Report.svg" height="50" width="50"/></a>
+<a href="https://qameta.io"><img" title="Allure TestOps" src="media/logo/Allure_TO.svg" height="50" width="50"/></a>
+<a href="https://junit.org/junit5/"><img title="JUnit5" src="media/logo/JUnit5.svg" height="50" width="50"/></a> 
+<a href="https://github.com/"><img title="GitHub" src="media/logo/GitHub.svg" height="50" width="50"/></a> 
+<a href="https://www.jenkins.io/"><img title="Jenkins" src="media/logo/Jenkins.svg" height="50" width="50"/></a> 
+<a href="https://telegram.org/"><img title="Telegram" src="media/logo/Telegram.svg" height="50" width="50"/></a>  
+<a href="https://app-automate.browserstack.com/"><img title="BrowserStack" src="media/logo/Browserstack.svg" height="45" width="45"/></a>  
+<a href="https://developer.android.com/studio"><img title="Android Studio.svg" src="media/logo/Android_Studio.svg" height="45" width="45"/></a>   
+<a href="https://appium.io"><img title="Appium" src="media/logo/Appium.svg" height="45" width="45"/></a>   
 </p>   
 
 - Проект состоит из UI-тестов, API и мобильных тестов для Android
@@ -61,7 +61,7 @@
 - [x] Проверка авторизации в приложении Trello
 ---
 
-## <img width="4%" style="vertical-align:middle" title="Jenkins" src="media/logo/Jenkins.svg"> Сборка в [Jenkins](https://jenkins.autotests.cloud/job/DiplomaAvvakumovaYana/)
+## <img height="35" width="35" style="vertical-align:middle" title="Jenkins" src="media/logo/Jenkins.svg"> Сборка в [Jenkins](https://jenkins.autotests.cloud/job/DiplomaAvvakumovaYana/)
 
 * <code>TASK</code> – название запускаемой задачи. По умолчанию - <code>main_web</code>.
 * <code>BROWSER</code> – браузер, в котором будут выполняться тесты. По умолчанию - <code>chrome</code>.
@@ -127,7 +127,7 @@ main_mobile
 </p>
 
 ---
-## <img width="4%" style="vertical-align:middle" title="Allure_Report" src="media/logo/Allure_Report.svg"> Интеграция с [Allure Report](https://jenkins.autotests.cloud/job/DiplomaAvvakumovaYana/allure/)
+## <img height="35" width="35" style="vertical-align:middle" title="Allure_Report" src="media/logo/Allure_Report.svg"> Интеграция с [Allure Report](https://jenkins.autotests.cloud/job/DiplomaAvvakumovaYana/allure/)
 `Allure Report` - инструмент для генерации и визуализации отчетов о выполнении тестов, который позволяет представлять результаты тестирования в наглядной и удобной форме.
 
 ### Диаграмма прохождения тестов
@@ -143,7 +143,7 @@ main_mobile
 </p>
 
 ---
-## <img width="4%" style="vertical-align:middle" title="Allure_TestOps" src="media/logo/Allure_TO.svg"> Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/4391/test-cases/34137?treeId=0)
+## <img height="35" width="35" style="vertical-align:middle" title="Allure_TestOps" src="media/logo/Allure_TO.svg"> Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/4391/test-cases/34137?treeId=0)
 `Allure TestOps` - платформа для управления тестированием, которая предоставляет обширный набор для организации, выполнения и анализа тестов в проектах.
 
 <p align="center">  
@@ -151,7 +151,7 @@ main_mobile
 </p>
 
 ---
-## <img width="4%" style="vertical-align:middle" title="Telegram" src="media/logo/Telegram.svg"> Уведомления в Telegram с использованием бота
+## <img height="35" width="35" style="vertical-align:middle" title="Telegram" src="media/logo/Telegram.svg"> Уведомления в Telegram с использованием бота
 
 После завершения сборки специальный бот автоматически отправляет сообщение с отчетом о прогоне тестов в `Telegram`.
 
@@ -160,7 +160,7 @@ main_mobile
 </p>
 
 ---
-## <img width="4%" style="vertical-align:middle" title="Selenoid" src="media/logo/Selenoid.svg"> Видео примера запуска тестов в Selenoid
+## <img height="35" width="35" style="vertical-align:middle" title="Selenoid" src="media/logo/Selenoid.svg"> Видео примера запуска тестов в Selenoid
 
 В отчетах Allure для каждого теста прикреплен не только скриншот, но и видео прохождения теста.
 <p align="center">
