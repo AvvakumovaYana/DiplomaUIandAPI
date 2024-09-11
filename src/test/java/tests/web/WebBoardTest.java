@@ -24,8 +24,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Owner("Аввакумова Яна")
 @Tag("web")
 public class WebBoardTest extends TestBase {
-    protected final MainBoardsPage mainBoardsPage = new MainBoardsPage();
-    protected final BoardCreationForm boardCreationForm = new BoardCreationForm();
+    private final MainBoardsPage mainBoardsPage = new MainBoardsPage();
+    private final BoardCreationForm boardCreationForm = new BoardCreationForm();
 
     @Test
     @AllureId("34132")
